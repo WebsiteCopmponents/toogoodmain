@@ -1,5 +1,5 @@
 "use client";
-
+//File : testimonial.tsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Bookmark, Leaf, Menu } from "lucide-react";
@@ -86,7 +86,71 @@ export default function Testimonial02Halo({
             </h2>
           </header>
 
-          <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-center">
+          <div className="flex flex-col gap-5 lg:hidden">
+            {stories.map((story: Story, index: number) => {
+              const isActive = activeIndex === index;
+
+              return (
+                <button
+                  key={story.id}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className="w-full text-left"
+                >
+                  <motion.div
+                    animate={{
+                      backgroundColor: isActive
+                        ? "var(--color-primary)"
+                        : "#E1E7E1",
+                    }}
+                    className="overflow-hidden rounded-[24px] p-3"
+                  >
+                    <div className="relative h-[200px] overflow-hidden rounded-[16px]">
+                      <img
+                        src={story.img}
+                        alt={story.name}
+                        className="h-full w-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                      <Badge>{story.badge}</Badge>
+                    </div>
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          key={"mobile-content-" + story.id}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{
+                            duration: 0.45,
+                            ease: [0.22, 1, 0.36, 1] as const,
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-2 pt-4 pb-2 text-white">
+                            <p className="mb-4 text-[15px] font-normal leading-[1.6] opacity-90">
+                              "{story.quote}"
+                            </p>
+                            <h4 className="text-[16px] font-semibold">
+                              {story.name}
+                            </h4>
+                            <p className="text-[13px] text-[#7FC9A0]">
+                              {story.role}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                  <h3 className="mt-2 px-1 text-center text-[14px] font-medium text-[#1b1b1b]">
+                    {story.label}
+                  </h3>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="hidden items-center gap-4 lg:flex lg:justify-center">
             {stories.map((story: Story, index: number) => {
               const isActive = activeIndex === index;
 
@@ -117,10 +181,10 @@ export default function Testimonial02Halo({
                     }}
                     className="relative h-[420px] w-full overflow-hidden rounded-[24px] p-3"
                   >
-                    <div className="flex h-full w-full flex-col md:flex-row">
+                    <div className="flex h-full w-full flex-row">
                       <motion.div
                         layout
-                        className="relative h-full w-full flex-shrink-0 overflow-hidden rounded-[16px] md:w-[196px]"
+                        className="relative h-full w-[196px] flex-shrink-0 overflow-hidden rounded-[16px]"
                       >
                         <img
                           src={story.img}

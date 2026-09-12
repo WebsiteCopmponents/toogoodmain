@@ -72,8 +72,11 @@ export default function Hero({ children, className }: HeroProps) {
     if (!spacer) return;
 
     const io = new IntersectionObserver(
-      ([entry]) => setOverFooter(entry.isIntersecting),
-      { threshold: 0.15 },
+      ([entry]) => {
+        const pastStart = entry.boundingClientRect.top < 0;
+        setOverFooter(entry.isIntersecting || pastStart);
+      },
+      { threshold: [0, 0.15, 1] },
     );
     io.observe(spacer);
     return () => io.disconnect();
@@ -366,8 +369,10 @@ export default function Hero({ children, className }: HeroProps) {
       >
         <header
           className={
-            "fixed inset-x-0 top-0 z-[100] text-white transition-opacity duration-300 " +
-            (overFooter ? "pointer-events-none opacity-0" : "")
+            "fixed inset-x-0 top-0 text-white transition-opacity duration-300 " +
+            (overFooter && !isOpen
+              ? "pointer-events-none invisible z-0 opacity-0"
+              : "z-[100]")
           }
         >
           <div className="mx-auto w-full">
@@ -417,7 +422,10 @@ export default function Hero({ children, className }: HeroProps) {
 
         <nav
           ref={menuRef}
-          className="fixed top-0 right-0 bottom-0 z-[2] w-[var(--menu-width)] bg-[#fff] text-black"
+          className={
+            "fixed top-0 right-0 bottom-0 w-[var(--menu-width)] bg-[#fff] text-black " +
+            (isOpen ? "z-[20]" : "z-[2]")
+          }
         >
           <div className="flex h-full w-full flex-col items-stretch justify-between gap-8 overflow-auto px-5 pt-20 pb-5 md:px-8 md:pt-[7.5em] md:pb-8">
             <ul className="m-0 flex w-full list-none flex-col p-0">

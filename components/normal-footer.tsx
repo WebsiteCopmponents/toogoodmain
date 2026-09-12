@@ -1,5 +1,5 @@
 "use client";
-
+//File : normal-footer.tsx
 import React, { useState } from "react";
 
 export default function NormalFooter({ className }: { className?: string }) {
@@ -8,7 +8,7 @@ export default function NormalFooter({ className }: { className?: string }) {
   return (
     <footer
       className={
-        "bg-[#101110] text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden font-sans " +
+        "bg-[#034F47] text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden font-sans " +
         (className || "")
       }
     >
@@ -27,7 +27,7 @@ export default function NormalFooter({ className }: { className?: string }) {
             and the work that sits around a launch.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-0 w-full max-w-[560px] bg-[#fff] rounded-full p-1 border border-white/5">
+          <div className="flex w-full max-w-[560px] flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:border sm:border-white/5 sm:bg-[#fff] sm:p-1">
             <input
               type="email"
               placeholder="Enter your email"
@@ -35,12 +35,12 @@ export default function NormalFooter({ className }: { className?: string }) {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setEmail(e.target.value)
               }
-              className="flex-1 bg-transparent border-none outline-none px-6 py-4 text-[15px] text-white placeholder:text-[#898989] w-full font-sans"
+              className="w-full flex-1 rounded-full border-none bg-[#fff] px-6 py-4 font-sans text-[15px] text-[#111] outline-none placeholder:text-[#898989] sm:bg-transparent"
             />
             <button
               type="button"
               onClick={() => setEmail("")}
-              className="bg-[#034F47] hover:bg-[#023d36] transition-colors text-white font-bold px-8 py-4 rounded-full text-[15px] w-full sm:w-auto min-w-[140px] font-sans"
+              className="w-full min-w-[140px] rounded-full bg-[#000] px-8 py-4 font-sans text-[15px] font-bold text-white transition-colors hover:bg-[#111] sm:w-auto"
             >
               Subscribe
             </button>
@@ -52,12 +52,13 @@ export default function NormalFooter({ className }: { className?: string }) {
         <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-12 lg:gap-0">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
-              <img
-                src="https://cdn.jiro.build/Sumon/orbit%20logo.png"
-                alt="TooGood.agency"
-                className="w-20 h-20 object-contain"
-                referrerPolicy="no-referrer"
-              />
+              <a
+                href="/"
+                className="font-sans text-[1.25em] tracking-[-0.02em] text-[#f4f4f4]"
+                aria-label="TooGood.agency"
+              >
+                TooGood.agency
+              </a>
             </div>
             <p className="text-[#898989] text-sm leading-relaxed max-w-[200px] font-sans">
               A UK online studio for web,
@@ -74,7 +75,7 @@ export default function NormalFooter({ className }: { className?: string }) {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-[#898989] text-[13px] hover:text-[#D4FE3F] transition-colors font-sans"
+                      className="text-[#898989] text-[13px] hover:text-white transition-colors font-sans"
                     >
                       {item}
                     </a>
@@ -88,18 +89,16 @@ export default function NormalFooter({ className }: { className?: string }) {
                 Resources
               </h4>
               <ul className="flex flex-col gap-3">
-                {["Work", "Industries", "FAQ"].map(
-                  (item: string) => (
-                    <li key={item}>
-                      <a
-                        href="#"
-                        className="text-[#898989] text-[13px] hover:text-[#D4FE3F] transition-colors font-sans"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  ),
-                )}
+                {["Work", "Industries", "FAQ"].map((item: string) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="text-[#898989] text-[13px] hover:text-white transition-colors font-sans"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -110,7 +109,7 @@ export default function NormalFooter({ className }: { className?: string }) {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-[#898989] text-[13px] hover:text-[#D4FE3F] transition-colors font-sans"
+                      className="text-[#898989] text-[13px] hover:text-white transition-colors font-sans"
                     >
                       {item}
                     </a>

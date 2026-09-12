@@ -1,6 +1,7 @@
 "use client";
 //File : industries.tsx
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionEyebrow from "@/components/section-eyebrow";
 
 const PROXY = "https://wsrv.nl/?url=";
@@ -106,6 +107,12 @@ export default function Industries({
     setLastImg(i);
   };
 
+  const go = (dir: -1 | 1) => {
+    const next = (lastImg + dir + items.length) % items.length;
+    setActive(next);
+    setLastImg(next);
+  };
+
   return (
     <section className={className}>
       <div className="grid min-h-screen w-full grid-cols-1 bg-black text-white antialiased font-sans max-[900px]:min-h-0 max-[900px]:grid-rows-[auto_40vh] min-[901px]:grid-cols-2">
@@ -164,7 +171,7 @@ export default function Industries({
               alt=""
               draggable={false}
               className={
-                "absolute inset-0 size-full object-cover blur-[28px] saturate-[1.15] transition-[opacity,transform,filter] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] " +
+                "absolute inset-0 size-full object-cover  saturate-[1.15] transition-[opacity,transform,filter] duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] " +
                 (lastImg === i
                   ? "scale-110 opacity-100"
                   : "scale-[1.18] opacity-0")
@@ -172,6 +179,36 @@ export default function Industries({
             />
           ))}
         </aside>
+      </div>
+
+      <div className="flex items-center gap-3 bg-black px-6 py-5 min-[901px]:hidden">
+        <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/20">
+          <div
+            className="h-full rounded-full bg-white transition-[width] duration-300"
+            style={{ width: `${((lastImg + 1) / items.length) * 100}%` }}
+          />
+        </div>
+        <span className="shrink-0 text-[12px] tabular-nums text-white/60">
+          {items[lastImg]?.num} / {String(items.length).padStart(2, "0")}
+        </span>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            aria-label="Previous industry"
+            onClick={() => go(-1)}
+            className="flex size-10 items-center justify-center rounded-full border border-white/30 text-white"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            type="button"
+            aria-label="Next industry"
+            onClick={() => go(1)}
+            className="flex size-10 items-center justify-center rounded-full border border-white/30 text-white"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </div>
     </section>
   );

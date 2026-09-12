@@ -111,10 +111,13 @@ export default function Footer() {
     const rect = wordEl.getBoundingClientRect();
     const naturalWidth = rect.width || 1;
     const naturalHeight = rect.height || 1;
-    const sizeByW = 100 * ((window.innerWidth * TARGET_FILL_W) / naturalWidth);
-    const sizeByH =
-      100 * ((window.innerHeight * TARGET_FILL_H) / naturalHeight);
-    wordEl.style.fontSize = `${Math.min(sizeByW, sizeByH)}px`;
+    const mobile = window.innerWidth < 768;
+    const fillW = mobile ? 0.82 : TARGET_FILL_W;
+    const fillH = mobile ? 0.16 : TARGET_FILL_H;
+    const sizeByW = 100 * ((window.innerWidth * fillW) / naturalWidth);
+    const sizeByH = 100 * ((window.innerHeight * fillH) / naturalHeight);
+    const nextSize = Math.min(sizeByW, sizeByH);
+    wordEl.style.fontSize = `${mobile ? Math.min(nextSize, 40) : nextSize}px`;
     setSized(true);
   }, []);
 

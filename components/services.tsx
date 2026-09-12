@@ -1,6 +1,6 @@
 import React from "react";
 import SectionEyebrow from "@/components/section-eyebrow";
-
+//File : services.tsx
 export interface BenefitItem {
   num: string;
   title: string;
@@ -85,14 +85,14 @@ export default function Services({
           </p>
         </div>
 
-        <div className="flex h-[500px] w-full flex-col gap-3 md:h-[420px] md:flex-row">
+        <div className="flex h-auto w-full flex-col gap-4 md:h-[420px] md:flex-row md:gap-3">
           {items.map((item, i) => (
             <article
               key={i}
               tabIndex={0}
-              className="group relative flex-1 cursor-pointer overflow-hidden rounded-xl bg-[#e6ecf7] outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[1.25] hover:rounded-[20px] hover:bg-white hover:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] focus-within:flex-[1.25] focus-within:rounded-[20px] focus-within:bg-white focus-within:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] motion-reduce:transition-opacity motion-reduce:duration-200"
+              className="group relative cursor-pointer overflow-hidden rounded-[20px] bg-white shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] max-md:flex-none md:flex-1 md:rounded-xl md:bg-[#e6ecf7] md:shadow-none md:hover:flex-[1.25] md:hover:rounded-[20px] md:hover:bg-white md:hover:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] md:focus-within:flex-[1.25] md:focus-within:rounded-[20px] md:focus-within:bg-white md:focus-within:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] motion-reduce:transition-opacity motion-reduce:duration-200"
             >
-              <div className="absolute inset-0 flex flex-col justify-between px-5 pt-5 pb-10 opacity-100 transition-[opacity,transform] duration-400 ease-in-out group-hover:pointer-events-none group-hover:-translate-y-2.5 group-hover:opacity-0 group-focus-within:pointer-events-none group-focus-within:-translate-y-2.5 group-focus-within:opacity-0 motion-reduce:transform-none">
+              <div className="absolute inset-0 hidden flex-col justify-between px-5 pt-5 pb-10 opacity-100 transition-[opacity,transform] duration-400 ease-in-out md:flex group-hover:pointer-events-none group-hover:-translate-y-2.5 group-hover:opacity-0 group-focus-within:pointer-events-none group-focus-within:-translate-y-2.5 group-focus-within:opacity-0 motion-reduce:transform-none">
                 <div className="font-heading text-[52px] leading-none font-medium text-[#c8d3e5]">
                   {item.num}
                 </div>
@@ -108,17 +108,17 @@ export default function Services({
                 </h3>
               </div>
 
-              <div className="absolute inset-0 flex flex-col p-2 opacity-0 translate-y-2.5 pointer-events-none transition-[opacity,transform] duration-400 ease-in-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 motion-reduce:transform-none">
+              <div className="flex flex-col p-2 max-md:relative max-md:translate-y-0 max-md:opacity-100 max-md:pointer-events-auto md:absolute md:inset-0 md:translate-y-2.5 md:opacity-0 md:pointer-events-none md:transition-[opacity,transform] md:duration-400 md:ease-in-out md:group-hover:pointer-events-auto md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-within:pointer-events-auto md:group-focus-within:translate-y-0 md:group-focus-within:opacity-100 motion-reduce:transform-none">
                 <img
                   src={item.chat}
                   alt=""
                   className="aspect-[1.56/1] w-full rounded-xl object-cover hue-rotate-[190deg] saturate-110"
                 />
-                <div className="flex flex-1 flex-col justify-center gap-2 px-4">
-                  <h3 className="font-heading m-0 text-[32px] leading-[1.1] font-medium text-[#16233d]">
+                <div className="flex flex-1 flex-col justify-center gap-2 px-4 py-4">
+                  <h3 className="font-heading m-0 text-[28px] leading-[1.1] font-medium text-[#16233d] md:text-[32px]">
                     {item.title}
                   </h3>
-                  <p className="m-0 text-sm leading-[1.2] text-[#5e6472]">
+                  <p className="m-0 text-sm leading-[1.4] text-[#5e6472]">
                     {item.desc}
                   </p>
                 </div>

@@ -30,7 +30,7 @@ export default function About({ className }: { className?: string }) {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 w-full mb-20 border-y border-[#e1e0e0] py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full mb-20 border-y border-[#e1e0e0] py-10">
           {[
             { num: "UK", label: "Online studio, working remotely" },
             { num: "Web", label: "Sites, apps, and dashboards" },
@@ -48,7 +48,7 @@ export default function About({ className }: { className?: string }) {
                 (index !== 3 ? "border-r border-[#e1e0e0]" : "")
               }
             >
-              <div className="font-heading text-[32px] md:text-[42px] font-medium text-[#111] leading-tight">
+              <div className="font-heading text-[24px] md:text-[42px] font-medium text-[#111] leading-tight">
                 {stat.num}
               </div>
               <div className="text-[13px] text-[#888] font-medium font-sans">
@@ -80,7 +80,7 @@ export default function About({ className }: { className?: string }) {
                   />
                 </svg>
               </div>
-              <div className="font-heading text-[42px] md:text-[48px] font-medium text-white leading-none">
+              <div className="font-heading text-[28px]  font-medium text-white leading-none">
                 Web + app
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function About({ className }: { className?: string }) {
             className="h-[350px] bg-[#254C3C] rounded-[24px] p-[28px] flex flex-col justify-between"
           >
             <div className="flex justify-between items-start">
-              <div className="font-heading text-[42px] md:text-[48px] font-medium text-white leading-none">
+              <div className="font-heading text-[28px] font-medium text-white leading-none">
                 UI/UX
               </div>
               <div className="w-[48px] h-[48px] bg-white rounded-full flex items-center justify-center shadow-sm">
