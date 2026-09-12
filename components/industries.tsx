@@ -115,8 +115,8 @@ export default function Industries({
 
   return (
     <section className={className}>
-      <div className="grid min-h-screen w-full grid-cols-1 bg-black text-white antialiased font-sans max-[900px]:min-h-0 max-[900px]:grid-rows-[auto_40vh] min-[901px]:grid-cols-2">
-        <aside className="relative flex flex-col bg-black px-6 py-8 max-[900px]:px-6 min-[901px]:px-[72px] min-[901px]:py-14">
+      <div className="grid min-h-screen w-full grid-cols-1 bg-[#F6F6F7] text-black antialiased font-sans max-[900px]:min-h-0 max-[900px]:grid-rows-[auto_40vh] min-[901px]:grid-cols-2">
+        <aside className="relative flex flex-col bg-[#F6F6F7] px-6 py-8 max-[900px]:px-6 min-[901px]:px-[72px] min-[901px]:py-14">
           <div className="mb-auto">
             <SectionEyebrow>{eyebrow}</SectionEyebrow>
           </div>
@@ -131,7 +131,7 @@ export default function Industries({
                   className="group border-b border-white/20"
                 >
                   <button
-                    className="grid w-full cursor-pointer appearance-none grid-cols-[40px_1fr_22px] items-center gap-x-6 border-0 bg-transparent py-[22px] text-left font-inherit text-white opacity-30 transition-opacity duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-55 group-data-[open]:opacity-100 motion-reduce:duration-150"
+                    className="grid w-full cursor-pointer appearance-none grid-cols-[40px_1fr_22px] items-center gap-x-6 border-0 bg-transparent py-[22px] text-left font-inherit text-black opacity-30 transition-opacity duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-55 group-data-[open]:opacity-100 motion-reduce:duration-150"
                     type="button"
                     onClick={() => onClick(i)}
                   >
@@ -142,15 +142,15 @@ export default function Industries({
                       {it.question}
                     </h3>
                     <span className="relative inline-block h-[14px] w-[14px] justify-self-end">
-                      <span className="absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-white transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[open]:rotate-90 motion-reduce:duration-150" />
-                      <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-white transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[open]:rotate-180 motion-reduce:duration-150" />
+                      <span className="absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-black transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[open]:rotate-90 motion-reduce:duration-150" />
+                      <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-black transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[open]:rotate-180 motion-reduce:duration-150" />
                     </span>
                   </button>
                   <div className="grid grid-cols-[40px_1fr_22px] gap-x-6">
                     <span />
                     <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[open]:grid-rows-[1fr] motion-reduce:duration-150">
                       <div className="min-h-0 overflow-hidden">
-                        <p className="m-0 pb-[26px] font-sans text-[15px] leading-[1.48] tracking-[-0.005em] text-white/60">
+                        <p className="m-0 pb-[26px] font-sans text-[15px] leading-[1.48] tracking-[-0.005em] text-black/60">
                           {it.answer}
                         </p>
                       </div>

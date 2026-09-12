@@ -74,18 +74,22 @@ export function CtaButton(props: CtaButtonProps) {
 }
 
 export function CtaStaggerButton(
-  props: Omit<CtaButtonProps, "className" | "bgClassName"> & {
+  props: Omit<CtaButtonProps, "className"> & {
     className?: string;
     bgClassName?: string;
   },
 ) {
-  const { className, bgClassName, ...rest } = props;
-  return (
-    <StaggerButton
-      arrow
-      className={cx("max-w-none grow-0 rounded-[99px] px-8 py-4", className)}
-      bgClassName={cx("rounded-[99px] bg-[#EEEEED]", bgClassName)}
-      {...rest}
-    />
-  );
+  const { className, bgClassName, children, ...rest } = props;
+  const shared = {
+    arrow: true as const,
+    children,
+    className: cx("max-w-none grow-0 rounded-[99px] px-8 py-4", className),
+    bgClassName: cx("rounded-[99px] bg-[#EEEEED]", bgClassName),
+  };
+
+  if ("href" in rest && rest.href) {
+    return <StaggerButton {...shared} href={rest.href} />;
+  }
+
+  return <StaggerButton {...shared} />;
 }

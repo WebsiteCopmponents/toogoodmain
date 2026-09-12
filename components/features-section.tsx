@@ -1,5 +1,5 @@
 "use client";
-
+//File : features-section.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import { Lock, Bell, ChevronRight } from "lucide-react";
@@ -10,85 +10,81 @@ export default function FeaturesSection({ className }: { className?: string }) {
   return (
     <section
       className={
-        "bg-black py-[90px] px-6 md:px-[60px] font-sans relative overflow-hidden " +
+        "relative overflow-hidden bg-white px-6 py-[90px] font-sans md:px-[60px] " +
         (className || "")
       }
     >
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-white/5 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white/5 blur-[120px] rounded-full" />
-      </div>
-
-      <div className="max-w-[1350px] mx-auto relative z-10">
-        <header className="flex flex-col md:flex-row justify-between items-end gap-8 mb-[60px]">
+      <div className="relative z-10 mx-auto max-w-[1350px]">
+        <header className="mb-[60px] flex flex-col items-end justify-between gap-8 md:flex-row">
           <div className="flex-1">
             <SectionEyebrow className="mb-3">Features</SectionEyebrow>
-            <h2 className="text-[36px] md:text-[52px] font-medium text-white leading-[1.1] max-w-[820px] mb-4">
+            <h2 className="mb-4 max-w-[820px] text-[36px] leading-[1.1] font-medium text-black md:text-[52px]">
               Design, build, and the work that sits around it.
             </h2>
-            <p className="text-[16px] text-[#666766] font-medium">
-              With TooGood, the site, the app, and the ops around them stay in one place.
+            <p className="text-[16px] font-medium text-[#555555]">
+              With TooGood, the site, the app, and the ops around them stay in
+              one place.
             </p>
           </div>
 
-          <CtaButton className="self-start md:self-end bg-white text-black">
+          <CtaButton className="self-start md:self-end">
             Start a project
           </CtaButton>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-10 gap-6">
-          <div className="md:col-span-4 bg-[#171716] border border-[#232323] rounded-[24px] p-8 min-h-[520px] flex flex-col overflow-hidden relative group">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1b] border border-[#242424] rounded-full mb-8 self-start">
-              <Lock size={12} className="text-[#898888]" />
-              <span className="text-[12px] text-[#898888] font-medium tracking-wide">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-10">
+          <div className="group relative flex min-h-[520px] flex-col overflow-hidden rounded-[24px] bg-[#F6F6F7] p-8 md:col-span-4">
+            <div className="mb-8 inline-flex items-center gap-2 self-start rounded-full border border-[#E8E8EA] bg-white px-4 py-2">
+              <Lock size={12} className="text-[#555555]" />
+              <span className="text-[12px] font-medium tracking-wide text-[#555555]">
                 Secure by default
               </span>
             </div>
 
-            <h3 className="text-white text-[32px] font-medium mb-3 opacity-90">
+            <h3 className="mb-3 text-[32px] font-medium text-black">
               Built to last
             </h3>
-            <p className="text-[#666766] text-[14px] leading-[1.6] max-w-[260px]">
+            <p className="max-w-[260px] text-[14px] leading-[1.6] text-[#555555]">
               Fast, secure, scalable work — clean code, real SEO, and easy
               long-term maintenance.
             </p>
 
-            <div className="flex-1 flex items-end pt-8 relative">
-              <div className="relative w-full h-[300px] mt-auto flex justify-center md:justify-start">
+            <div className="relative flex flex-1 items-end pt-8">
+              <div className="relative mt-auto flex h-[300px] w-full justify-center md:justify-start">
                 <div
-                  className="absolute bottom-0 left-[60px] w-[350px] h-[220px] rounded-[24px] bg-[#232323] border border-[#333332] z-0 transition-transform duration-500 group-hover:-translate-y-8"
+                  className="absolute bottom-0 left-[60px] z-0 h-[220px] w-[350px] rounded-[24px] border border-[#E4E4E6] bg-[#ECECEE] transition-transform duration-500 group-hover:-translate-y-8"
                   style={{ transform: "rotate(-10deg) translateY(-45px)" }}
                 >
-                  <div className="absolute top-7 right-7 w-16 h-12 bg-white/5 rounded-lg" />
+                  <div className="absolute top-7 right-7 h-12 w-16 rounded-lg bg-black/5" />
                 </div>
                 <div
-                  className="absolute bottom-0 left-[30px] w-[350px] h-[220px] rounded-[24px] bg-[#1a1a1b] border border-[#2e2f2f] z-10 transition-transform duration-500 group-hover:-translate-y-4"
+                  className="absolute bottom-0 left-[30px] z-10 h-[220px] w-[350px] rounded-[24px] border border-[#E0E0E2] bg-[#E8E8EA] transition-transform duration-500 group-hover:-translate-y-4"
                   style={{ transform: "rotate(-5deg) translateY(-22px)" }}
                 >
-                  <div className="absolute top-7 right-7 w-16 h-12 bg-white/5 rounded-lg" />
+                  <div className="absolute top-7 right-7 h-12 w-16 rounded-lg bg-black/5" />
                 </div>
                 <div
-                  className="absolute bottom-0 left-0 w-[350px] h-[220px] rounded-[24px] border border-[#3a3b3b] z-20 transition-all duration-500 group-hover:rotate-0 group-hover:translate-x-5 shadow-2xl overflow-hidden"
+                  className="absolute bottom-0 left-0 z-20 h-[220px] w-[350px] overflow-hidden rounded-[24px] border border-[#E0E0E2] shadow-xl transition-all duration-500 group-hover:translate-x-5 group-hover:rotate-0"
                   style={{
                     background:
-                      "linear-gradient(135deg, #1f1e1e 0%, #2b2a2a 50%, #1f1e1e 100%)",
+                      "linear-gradient(135deg, #ffffff 0%, #f3f3f5 50%, #ffffff 100%)",
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-transparent" />
                   <div
-                    className="absolute bottom-0 right-0 w-[220px] h-[220px] bg-white/[0.03] pointer-events-none"
+                    className="pointer-events-none absolute right-0 bottom-0 h-[220px] w-[220px] bg-black/[0.03]"
                     style={{ clipPath: "polygon(100% 0, 100% 100%, 0 100%)" }}
                   />
-                  <div className="p-9 flex flex-col h-full justify-between relative z-10">
+                  <div className="relative z-10 flex h-full flex-col justify-between p-9">
                     <div className="flex items-center gap-2.5">
                       <span className="text-[16px] text-[#A855F6]">
                         &#10035;
                       </span>
-                      <span className="text-white text-[24px] font-medium tracking-tight">
+                      <span className="text-[24px] font-medium tracking-tight text-black">
                         TooGood
                       </span>
                     </div>
-                    <div className="opacity-10 text-[18px] font-bold uppercase tracking-[0.4em] pointer-events-none">
+                    <div className="pointer-events-none text-[18px] font-bold tracking-[0.4em] text-black/10 uppercase">
                       TooGood &reg;
                     </div>
                   </div>
@@ -97,37 +93,37 @@ export default function FeaturesSection({ className }: { className?: string }) {
             </div>
           </div>
 
-          <div className="md:col-span-6 bg-[#171716] border border-[#232323] rounded-[24px] p-8 md:p-10 flex flex-col gap-10 overflow-hidden min-h-[520px]">
-            <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+          <div className="flex min-h-[520px] flex-col gap-10 overflow-hidden rounded-[24px] bg-[#F6F6F7] p-8 md:col-span-6 md:p-10">
+            <div className="flex flex-col items-start justify-between gap-8 md:flex-row">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1b] border border-[#242424] rounded-full mb-8">
-                  <span className="text-[14px] text-[#898888] font-medium">
+                <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#E8E8EA] bg-white px-4 py-2">
+                  <span className="text-[14px] font-medium text-[#555555]">
                     $
                   </span>
-                  <span className="text-[12px] text-[#898888] font-medium tracking-wide">
-                Connected services
+                  <span className="text-[12px] font-medium tracking-wide text-[#555555]">
+                    Connected services
                   </span>
                 </div>
-                <h3 className="text-white text-[32px] font-medium leading-[1.1] mb-2">
+                <h3 className="mb-2 text-[32px] leading-[1.1] font-medium text-black">
                   Ads, SEO, and alerts that stay useful
                 </h3>
               </div>
-              <p className="text-[#666766] text-[14px] leading-[1.7] flex-1 md:mt-12 transition-colors">
+              <p className="flex-1 text-[14px] leading-[1.7] text-[#555555] transition-colors md:mt-12">
                 Social ads, 360 SEO, and Google campaigns wired to the same
                 conversion paths as the product we ship.
               </p>
             </div>
 
-            <div className="bg-[#0e0e0f] border border-[#1a1a1b] rounded-[20px] p-6 shadow-inner flex-1 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#1a1a1b] border border-[#242424] flex items-center justify-center">
-                  <Bell size={18} className="text-[#898888]" />
+            <div className="flex flex-1 flex-col justify-center rounded-[20px] border border-[#E8E8EA] bg-white p-6">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E8EA] bg-[#F6F6F7]">
+                  <Bell size={18} className="text-[#555555]" />
                 </div>
                 <div>
-                  <h4 className="text-white text-[15px] font-medium">
+                  <h4 className="text-[15px] font-medium text-black">
                     Project updates
                   </h4>
-                  <p className="text-[#555455] text-[12px]">
+                  <p className="text-[12px] text-[#777777]">
                     Know when a launch, fix, or campaign actually moved
                   </p>
                 </div>
@@ -157,23 +153,23 @@ export default function FeaturesSection({ className }: { className?: string }) {
                   ) => (
                     <div
                       key={i}
-                      className="bg-[#171716] border border-[#232323] p-3.5 px-5 rounded-[12px] flex items-center justify-between transition-all hover:border-[#333332] cursor-pointer group/alert"
+                      className="group/alert flex cursor-pointer items-center justify-between rounded-[12px] border border-[#E8E8EA] bg-[#F6F6F7] p-3.5 px-5 transition-all hover:border-[#D4D4D6]"
                     >
                       <div className="flex items-center gap-3">
                         <div
-                          className="w-2 h-2 rounded-full group-hover/alert:scale-110 transition-transform"
+                          className="h-2 w-2 rounded-full transition-transform group-hover/alert:scale-110"
                           style={{ backgroundColor: alert.color }}
                         />
                         <span
                           className={
-                            "text-[14px] font-[500] transition-colors group-hover/alert:text-white " +
-                            (i === 0 ? "text-white" : "text-[#989899]")
+                            "text-[14px] font-[500] transition-colors group-hover/alert:text-black " +
+                            (i === 0 ? "text-black" : "text-[#666666]")
                           }
                         >
                           {alert.label}
                         </span>
                       </div>
-                      <span className="text-[#555455] text-[12px]">
+                      <span className="text-[12px] text-[#777777]">
                         {alert.time}
                       </span>
                     </div>
@@ -183,35 +179,35 @@ export default function FeaturesSection({ className }: { className?: string }) {
             </div>
           </div>
 
-          <div className="md:col-span-6 bg-[#171716] border border-[#232323] rounded-[24px] p-8 md:p-10 flex flex-col gap-10 overflow-hidden min-h-[440px]">
-            <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+          <div className="flex min-h-[440px] flex-col gap-10 overflow-hidden rounded-[24px] bg-[#F6F6F7] p-8 md:col-span-6 md:p-10">
+            <div className="flex flex-col items-start justify-between gap-8 md:flex-row">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1b] border border-[#242424] rounded-full mb-8">
-                  <span className="text-[14px] text-[#898888] font-medium">
+                <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#E8E8EA] bg-white px-4 py-2">
+                  <span className="text-[14px] font-medium text-[#555555]">
                     $
                   </span>
-                  <span className="text-[12px] text-[#898888] font-medium tracking-wide">
+                  <span className="text-[12px] font-medium tracking-wide text-[#555555]">
                     Clear product UI
                   </span>
                 </div>
-                <h3 className="text-white text-[32px] font-medium leading-[1.1] mb-2">
+                <h3 className="mb-2 text-[32px] leading-[1.1] font-medium text-black">
                   Dashboards that stay readable
                 </h3>
               </div>
-              <p className="text-[#666766] text-[14px] leading-[1.7] flex-1 md:mt-12 transition-colors">
+              <p className="flex-1 text-[14px] leading-[1.7] text-[#555555] transition-colors md:mt-12">
                 Custom dashboards around your actual workflows — numbers people
                 can act on without a support call.
               </p>
             </div>
 
-            <div className="bg-[#1a1a1b]/40 border border-[#242424] rounded-[20px] p-6 flex-1 flex flex-col justify-center overflow-hidden">
-              <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-1 flex-col justify-center overflow-hidden rounded-[20px] border border-[#E8E8EA] bg-white p-6">
+              <div className="mb-6 flex items-center justify-between">
                 <motion.span
                   initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: "easeOut" as const }}
-                  className="text-[#898888] text-[13px] font-medium uppercase tracking-wider"
+                  className="text-[13px] font-medium tracking-wider text-[#555555] uppercase"
                 >
                   This sprint
                 </motion.span>
@@ -224,15 +220,15 @@ export default function FeaturesSection({ className }: { className?: string }) {
                     ease: "easeOut" as const,
                     delay: 0.1,
                   }}
-                  className="text-white/60 text-[13px] font-medium tracking-wide"
+                  className="text-[13px] font-medium tracking-wide text-black/50"
                 >
                   12 tickets
                 </motion.span>
               </div>
 
-              <div className="flex gap-[4px] h-[36px] mb-6">
+              <div className="mb-6 flex h-[36px] gap-[4px]">
                 {Array.from({ length: 42 }).map((_: unknown, i: number) => {
-                  let color = "#343434";
+                  let color = "#E4E4E6";
                   if (i < 12) color = "#A855F6";
                   else if (i < 18) color = "#c185fc";
                   else if (i < 24) color = "#e9d5ff";
@@ -248,7 +244,7 @@ export default function FeaturesSection({ className }: { className?: string }) {
                         duration: 0.6,
                         ease: [0.215, 0.61, 0.355, 1.0] as const,
                       }}
-                      className="flex-1 rounded-full origin-bottom relative"
+                      className="relative origin-bottom flex-1 rounded-full"
                       style={{ backgroundColor: color }}
                     >
                       <motion.div
@@ -266,7 +262,7 @@ export default function FeaturesSection({ className }: { className?: string }) {
                 })}
               </div>
 
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <motion.span
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +272,7 @@ export default function FeaturesSection({ className }: { className?: string }) {
                     ease: "easeOut" as const,
                     delay: 1.0,
                   }}
-                  className="text-[#898888] text-[12px] font-medium"
+                  className="text-[12px] font-medium text-[#555555]"
                 >
                   8 shipped
                 </motion.span>
@@ -289,7 +285,7 @@ export default function FeaturesSection({ className }: { className?: string }) {
                     ease: "easeOut" as const,
                     delay: 1.2,
                   }}
-                  className="text-[#A855F6] text-[12px] font-medium uppercase tracking-wider"
+                  className="text-[12px] font-medium tracking-wider text-[#A855F6] uppercase"
                 >
                   4 in review
                 </motion.span>
@@ -297,21 +293,21 @@ export default function FeaturesSection({ className }: { className?: string }) {
             </div>
           </div>
 
-          <div className="md:col-span-4 flex flex-col gap-6">
-            <div className="bg-[#101011] border border-[#232323] rounded-[32px] p-9 relative overflow-hidden group flex-1 flex flex-col justify-center shadow-xl">
-              <p className="text-[#898888] text-[12px] font-medium mb-2">
+          <div className="flex flex-col gap-6 md:col-span-4">
+            <div className="group relative flex flex-1 flex-col justify-center overflow-hidden rounded-[32px] bg-[#F6F6F7] p-9">
+              <p className="mb-2 text-[12px] font-medium text-[#555555]">
                 This month
               </p>
-              <h4 className="text-white text-[48px] font-normal tracking-tight leading-none">
+              <h4 className="text-[48px] leading-none font-normal tracking-tight text-black">
                 4 live
               </h4>
-              <div className="flex mt-6">
-                <div className="bg-[#0c2e1a] text-[#2fcc71] text-[13px] font-medium px-4 py-1.5 rounded-full">
+              <div className="mt-6 flex">
+                <div className="rounded-full bg-[#E8F8EE] px-4 py-1.5 text-[13px] font-medium text-[#1a9a4a]">
                   +2 vs last month
                 </div>
               </div>
 
-              <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-90 group-hover:opacity-100 transition-opacity">
+              <div className="absolute top-1/2 right-8 -translate-y-1/2 opacity-90 transition-opacity group-hover:opacity-100">
                 <svg
                   width="110"
                   height="45"
@@ -333,28 +329,28 @@ export default function FeaturesSection({ className }: { className?: string }) {
               </div>
             </div>
 
-            <div className="bg-[#101011] border border-[#232323] rounded-[32px] p-9 relative overflow-hidden group flex-1 flex flex-col justify-center shadow-xl">
-              <div className="absolute top-8 left-9 right-9 flex justify-end items-center">
-                <div className="text-[12px] text-[#666766] font-medium cursor-pointer flex items-center gap-1 hover:text-white transition-colors">
+            <div className="group relative flex flex-1 flex-col justify-center overflow-hidden rounded-[32px] bg-[#F6F6F7] p-9">
+              <div className="absolute top-8 right-9 left-9 flex items-center justify-end">
+                <div className="flex cursor-pointer items-center gap-1 text-[12px] font-medium text-[#555555] transition-colors hover:text-black">
                   More <ChevronRight size={14} />
                 </div>
               </div>
 
               <div className="mt-12">
-                <p className="text-[#898888] text-[12px] font-medium mb-2">
+                <p className="mb-2 text-[12px] font-medium text-[#555555]">
                   Products shipped
                 </p>
-                <h4 className="text-white text-[48px] font-normal tracking-tight leading-none">
+                <h4 className="text-[48px] leading-none font-normal tracking-tight text-black">
                   12
                 </h4>
-                <div className="flex mt-6">
-                  <div className="bg-[#0c2e1a] text-[#2fcc71] text-[13px] font-medium px-4 py-1.5 rounded-full">
+                <div className="mt-6 flex">
+                  <div className="rounded-full bg-[#E8F8EE] px-4 py-1.5 text-[13px] font-medium text-[#1a9a4a]">
                     +3 this quarter
                   </div>
                 </div>
               </div>
 
-              <div className="absolute right-10 bottom-12 opacity-90 group-hover:opacity-100 transition-opacity">
+              <div className="absolute right-10 bottom-12 opacity-90 transition-opacity group-hover:opacity-100">
                 <svg
                   width="110"
                   height="45"
