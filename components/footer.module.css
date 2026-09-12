@@ -1,0 +1,285 @@
+.revealSpacer {
+  height: 100vh;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8vh;
+  overflow: hidden;
+  cursor: none;
+  background: radial-gradient(
+    120% 90% at 50% 30%,
+    #056b61 0%,
+    var(--primary) 45%,
+    #012e2a 100%
+  );
+}
+
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.word {
+  font-family: var(--font-sorts-mill), "Sorts Mill Goudy", serif;
+  font-weight: 500;
+  font-size: 24vw;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: #fff;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0;
+  white-space: nowrap;
+  user-select: none;
+  touch-action: none;
+  visibility: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.sized {
+  visibility: visible;
+}
+
+.letter {
+  display: inline-block;
+  transform-origin: 50% 0%;
+  will-change: transform;
+}
+
+.resting .letter {
+  transition: transform 700ms cubic-bezier(0.32, 0, 0.2, 1);
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 20;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.2s,
+    height 0.2s,
+    background 0.2s;
+}
+
+.cursorActive {
+  width: 40px;
+  height: 40px;
+  background: #ff2e63;
+}
+
+.glass {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  z-index: 30;
+}
+
+.subscribeDock {
+  position: fixed;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: auto;
+}
+
+.subscribe {
+  padding: 8px 8px 8px 20px;
+  border-radius: 999px;
+  gap: 12px;
+  font-size: 11px;
+  cursor: auto;
+}
+
+.subscribe label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+}
+
+.subscribe input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font: 700 13px inherit;
+  letter-spacing: 0.04em;
+  width: 210px;
+  caret-color: #ff2e63;
+}
+
+.subscribe input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.whatsapp {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+  opacity: 0;
+  transform: scale(0.7) translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s cubic-bezier(0.32, 0, 0.2, 1);
+}
+
+.whatsapp svg {
+  width: 22px;
+  height: 22px;
+}
+
+.subscribeDock:hover .whatsapp,
+.subscribeDock:focus-within .whatsapp,
+.dockHot .whatsapp,
+.whatsapp:focus-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.whatsapp:hover {
+  background: #1ebe57;
+}
+
+.apply {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font: 700 11px inherit;
+  cursor: pointer;
+}
+
+.apply:hover {
+  background: #ff2e63;
+  color: #fff;
+  border-color: #ff2e63;
+  box-shadow: 0 0 20px rgba(255, 46, 99, 0.5);
+}
+
+.brand {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+  z-index: 30;
+  font-family: var(--font-sorts-mill), "Sorts Mill Goudy", serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.play {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 30;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  padding: 12px 22px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.play:hover {
+  background: #fff;
+  color: var(--primary);
+}
+
+.hint {
+  position: fixed;
+  left: 50%;
+  bottom: 36px;
+  transform: translateX(-50%);
+  z-index: 30;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (hover: none) {
+  .cursor {
+    display: none;
+  }
+
+  .stage,
+  .word {
+    cursor: auto;
+  }
+
+  .whatsapp {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .brand {
+    display: none;
+  }
+
+  .hint {
+    display: none;
+  }
+
+  .subscribe input {
+    width: 140px;
+  }
+
+  .whatsapp {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
