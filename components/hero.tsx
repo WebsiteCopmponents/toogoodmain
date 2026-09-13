@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { CtaButton, CtaStaggerButton } from "@/components/cta-button";
+import ContactModal from "@/components/ContactModal";
 
 const STAGGER_EASE = "cubic-bezier(0.625, 0.05, 0, 1)";
 
@@ -43,14 +44,24 @@ gsap.registerPlugin(CustomEase);
 if (!CustomEase.get("energy")) {
   CustomEase.create("energy", "M0,0 C0.32,0.72 0,1 1,1");
 }
+interface NavLink {
+  href: string;
+  label: string;
+  current?: boolean;
+  action?: string;
+}
 
 const PRIMARY_LINKS = [
   { href: "/", label: "Home", current: true },
   { href: "#", label: "Projects" },
   { href: "#", label: "About" },
   { href: "#", label: "Services" },
-  { href: "#", label: "News" },
-  { href: "#", label: "Contact" },
+  // { href: "#", label: "News" },
+  {
+    href: "#contact",
+    label: "Contact",
+    action: "contact",
+  },
 ];
 
 type HeroProps = {
@@ -61,6 +72,9 @@ type HeroProps = {
 export default function Hero({ children, className }: HeroProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [overFooter, setOverFooter] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const closeMenuRef = useRef<(() => void) | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
@@ -80,6 +94,17 @@ export default function Hero({ children, className }: HeroProps) {
     );
     io.observe(spacer);
     return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -298,24 +323,54 @@ export default function Hero({ children, className }: HeroProps) {
         pointerEvents: "none",
       });
 
+    const closeMenu = () => {
+      menuOpen = false;
+
+      setIsOpen(false);
+
+      toggleBtn?.setAttribute("aria-expanded", "false");
+
+      toggleBtn?.setAttribute("aria-label", "open menu");
+
+      document.body.setAttribute("data-menu-status", "");
+
+      if (tl.time() < enterEndTime) {
+        tl.timeScale(1).reverse();
+      } else {
+        tl.timeScale(1).play();
+      }
+    };
+
+    closeMenuRef.current = closeMenu;
+
     function toggle() {
       menuOpen = !menuOpen;
+
       setIsOpen(menuOpen);
+
       toggleBtn?.setAttribute("aria-expanded", String(menuOpen));
+
       toggleBtn?.setAttribute(
         "aria-label",
         menuOpen ? "close menu" : "open menu",
       );
+
       document.body.setAttribute("data-menu-status", menuOpen ? "open" : "");
 
       if (menuOpen) {
         tl.invalidate();
-        if (tl.time() >= enterEndTime) tl.timeScale(1).restart();
-        else tl.timeScale(1).play();
-      } else if (tl.time() < enterEndTime) {
-        tl.timeScale(1).reverse();
+
+        if (tl.time() >= enterEndTime) {
+          tl.timeScale(1).restart();
+        } else {
+          tl.timeScale(1).play();
+        }
       } else {
-        tl.timeScale(1).play();
+        if (tl.time() < enterEndTime) {
+          tl.timeScale(1).reverse();
+        } else {
+          tl.timeScale(1).play();
+        }
       }
     }
 
@@ -369,7 +424,9 @@ export default function Hero({ children, className }: HeroProps) {
       >
         <header
           className={
-            "fixed inset-x-0 top-0 text-white transition-opacity duration-300 " +
+            "fixed inset-x-0 top-0 text-white transition-all duration-300 " +
+            (isSticky ? "bg-primary" : "bg-transparent") +
+            " " +
             (overFooter && !isOpen
               ? "pointer-events-none invisible z-0 opacity-0"
               : "z-[100]")
@@ -431,18 +488,38 @@ export default function Hero({ children, className }: HeroProps) {
             <ul className="m-0 flex w-full list-none flex-col p-0">
               {PRIMARY_LINKS.map((link) => (
                 <li key={link.label} data-reveal-l="">
-                  <a
-                    href={link.href}
-                    aria-current={link.current ? "page" : undefined}
-                    className={
-                      "group block w-full rounded-[0.25em] px-4 py-3 font-heading text-[2em] leading-[0.9] tracking-[-0.04em] md:text-[3.25em] " +
-                      (link.current
-                        ? "bg-primary !text-[#fff]"
-                        : "bg-transparent text-black")
-                    }
-                  >
-                    <NavStaggerLabel text={link.label} />
-                  </a>
+                  {link.action === "contact" ? (
+                    <button
+                      onClick={() => {
+                        closeMenuRef.current?.();
+
+                        setTimeout(() => {
+                          setContactOpen(true);
+                        }, 500);
+                      }}
+                      className={
+                        "group block w-full text-left rounded-[0.25em] px-4 py-3 font-heading text-[2em] leading-[0.9] tracking-[-0.04em] md:text-[3.25em] " +
+                        (link.current
+                          ? "bg-primary !text-[#fff]"
+                          : "bg-transparent text-black")
+                      }
+                    >
+                      <NavStaggerLabel text={link.label} />
+                    </button>
+                  ) : (
+                    <a
+                      href={link.href}
+                      aria-current={link.current ? "page" : undefined}
+                      className={
+                        "group block w-full rounded-[0.25em] px-4 py-3 font-heading text-[2em] leading-[0.9] tracking-[-0.04em] md:text-[3.25em] " +
+                        (link.current
+                          ? "bg-primary !text-[#fff]"
+                          : "bg-transparent text-black")
+                      }
+                    >
+                      <NavStaggerLabel text={link.label} />
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -562,8 +639,8 @@ export default function Hero({ children, className }: HeroProps) {
               Work that holds its own.
             </h1>
             <p className="mx-auto mb-8 max-w-[22rem] font-sans text-[1.05rem] leading-normal text-[#f4f4f4]/70">
-              A UK online studio for web, mobile, dashboards, and UI/UX —
-              design and development that holds its own.
+              A UK online studio for web, mobile, dashboards, and UI/UX — design
+              and development that holds its own.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <CtaButton>Start a project</CtaButton>
@@ -573,6 +650,11 @@ export default function Hero({ children, className }: HeroProps) {
         </section>
         {children}
       </div>
+
+      <ContactModal
+        isOpen={contactOpen}
+        onClose={() => setContactOpen(false)}
+      />
     </>
   );
 }

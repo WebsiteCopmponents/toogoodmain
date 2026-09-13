@@ -181,7 +181,7 @@ export default function Industries({
         </aside>
       </div>
 
-      <div className="flex items-center gap-3 bg-black px-6 py-5 min-[901px]:hidden">
+      {/* <div className="flex items-center gap-3 bg-black px-6 py-5 min-[901px]:hidden">
         <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/20">
           <div
             className="h-full rounded-full bg-white transition-[width] duration-300"
@@ -209,7 +209,7 @@ export default function Industries({
             <ChevronRight size={18} />
           </button>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -44,9 +44,12 @@ export default function About({ className }: { className?: string }) {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className={
-                "flex flex-col px-4 md:px-10 " +
-                (index !== 3 ? "border-r border-[#e1e0e0]" : "")
-              }
+  "flex flex-col px-4 md:px-10 " +
+  (index !== 3 ? "md:border-r md:border-[#e1e0e0]" : "") +
+  (index === 0 || index === 2
+    ? " border-r border-[#e1e0e0]"
+    : "")
+}
             >
               <div className="font-heading text-[24px] md:text-[42px] font-medium text-[#111] leading-tight">
                 {stat.num}
