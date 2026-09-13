@@ -105,7 +105,7 @@ export default function Testimonial02Halo({
                     }}
                     className="overflow-hidden rounded-[24px] p-3"
                   >
-                    <div className="relative h-[200px] overflow-hidden rounded-[16px]">
+                    <div className="relative h-auto overflow-hidden rounded-[16px]">
                       <img
                         src={story.img}
                         alt={story.name}

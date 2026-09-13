@@ -55,10 +55,7 @@ export default function OurServices({ className }: { className?: string }) {
     const card = el.querySelector<HTMLElement>("[data-service-card]");
     const step = card ? card.offsetWidth + 20 : 1;
     setActiveIndex(
-      Math.min(
-        cards.length - 1,
-        Math.max(0, Math.round(el.scrollLeft / step)),
-      ),
+      Math.min(cards.length - 1, Math.max(0, Math.round(el.scrollLeft / step))),
     );
   };
 
@@ -92,7 +89,7 @@ export default function OurServices({ className }: { className?: string }) {
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
           <div className="max-w-2xl">
-            <SectionEyebrow className="mb-6">Connected services</SectionEyebrow>
+            <SectionEyebrow className="mb-6">Our Projects</SectionEyebrow>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -100,8 +97,8 @@ export default function OurServices({ className }: { className?: string }) {
               transition={{ delay: 0.1 }}
               className="font-heading text-[40px] md:text-[48px] font-medium text-[#131313] leading-[1.1] tracking-tight"
             >
-              Main build, plus the work <br className="hidden md:block" />{" "}
-              that sits around it
+              Main build, plus the work <br className="hidden md:block" /> that
+              sits around it
             </motion.h2>
           </div>
 
@@ -154,10 +151,8 @@ export default function OurServices({ className }: { className?: string }) {
                             ? "Hide " + card.title + " description"
                             : "Show " + card.title + " description"
                         }
-                        onClick={() =>
-                          setOpenId(open ? null : card.id)
-                        }
-                        className="flex size-10 shrink-0 items-center justify-center rounded-full border border-[#131313]/20 text-[#131313]"
+                        onClick={() => setOpenId(open ? null : card.id)}
+                        className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-[#FDFCFD]"
                       >
                         <ChevronDown
                           size={18}
