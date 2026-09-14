@@ -1,9 +1,11 @@
 "use client";
 //File : normal-footer.tsx
 import React, { useState } from "react";
+import { useSiteModal } from "@/components/ContactModal";
 
 export default function NormalFooter({ className }: { className?: string }) {
   const [email, setEmail] = useState("");
+  const { open } = useSiteModal();
 
   return (
     <footer
@@ -105,14 +107,31 @@ export default function NormalFooter({ className }: { className?: string }) {
             <div className="flex flex-col gap-5">
               <h4 className="font-heading text-[15px] font-medium">Company</h4>
               <ul className="flex flex-col gap-3">
-                {["About", "Contact", "Privacy Policy"].map((item: string) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-[#898989] text-[13px] hover:text-white transition-colors font-sans"
-                    >
-                      {item}
-                    </a>
+                {(
+                  [
+                    { label: "About", href: "#" },
+                    { label: "Contact", view: "project" as const },
+                    { label: "Privacy Policy", view: "privacy" as const },
+                    { label: "Terms & Conditions", view: "terms" as const },
+                  ] as const
+                ).map((item) => (
+                  <li key={item.label}>
+                    {"view" in item ? (
+                      <button
+                        type="button"
+                        onClick={() => open(item.view)}
+                        className="font-sans text-[13px] text-[#898989] transition-colors hover:text-white"
+                      >
+                        {item.label}
+                      </button>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="font-sans text-[13px] text-[#898989] transition-colors hover:text-white"
+                      >
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

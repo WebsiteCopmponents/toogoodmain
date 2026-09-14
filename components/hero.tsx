@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { CtaButton, CtaStaggerButton } from "@/components/cta-button";
-import ContactModal from "@/components/ContactModal";
+import { useSiteModal } from "@/components/ContactModal";
 
 const STAGGER_EASE = "cubic-bezier(0.625, 0.05, 0, 1)";
 
@@ -72,8 +72,7 @@ type HeroProps = {
 export default function Hero({ children, className }: HeroProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [overFooter, setOverFooter] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
+  const { open } = useSiteModal();
   const closeMenuRef = useRef<(() => void) | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -94,17 +93,6 @@ export default function Hero({ children, className }: HeroProps) {
     );
     io.observe(spacer);
     return () => io.disconnect();
-  }, []);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   useEffect(() => {
@@ -424,29 +412,27 @@ export default function Hero({ children, className }: HeroProps) {
       >
         <header
           className={
-            "fixed inset-x-0 top-0 text-white transition-all duration-300 " +
-            (isSticky ? "bg-primary" : "bg-transparent") +
-            " " +
+            "fixed inset-x-0 top-0 bg-white text-black transition-all duration-300 " +
             (overFooter && !isOpen
               ? "pointer-events-none invisible z-0 opacity-0"
               : "z-[100]")
           }
         >
           <div className="mx-auto w-full">
-            <div className="flex items-center justify-between p-[1.25em] md:p-[2.5em]">
-              <a
-                href="/"
-                className="font-sans text-[1em] capitalize tracking-[-0.02em] text-[#f4f4f4] md:text-[1.25em]"
-                aria-label="TooGood.agency"
-              >
-                TooGood.agency
+            <div className="flex items-center justify-between px-[1.25em] py-[0.9em] md:px-[2.5em] md:py-[1.1em]">
+              <a href="/" aria-label="TooGood.agency">
+                <img
+                  src="/toogood-logo.png"
+                  alt="TooGood.agency"
+                  className="h-8 w-auto md:h-10"
+                />
               </a>
               <button
                 ref={toggleRef}
                 type="button"
                 aria-expanded={isOpen}
                 aria-label={isOpen ? "close menu" : "open menu"}
-                className={`m-[-1em] flex cursor-pointer items-center justify-center gap-[0.75em] border border-transparent bg-transparent p-[1em] font-inherit ${isOpen ? "bg-white p-2 rounded-xl text-black" : "text-white"}`}
+                className={`m-[-1em] flex cursor-pointer items-center justify-center gap-[0.75em] border border-transparent bg-transparent p-[1em] font-inherit text-black ${isOpen ? "rounded-xl bg-[#f4f4f4] p-2" : ""}`}
               >
                 <span className="flex h-[1.25em] shrink-0 flex-col items-end justify-start overflow-hidden md:h-[1.5em] ">
                   <span
@@ -494,7 +480,7 @@ export default function Hero({ children, className }: HeroProps) {
                         closeMenuRef.current?.();
 
                         setTimeout(() => {
-                          setContactOpen(true);
+                          open("project");
                         }, 500);
                       }}
                       className={
@@ -551,26 +537,34 @@ export default function Hero({ children, className }: HeroProps) {
                 </div>
                 <ul className="m-0 flex w-full list-none flex-col gap-3 p-0">
                   <li data-reveal-s="">
-                    <a
-                      href="#"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        closeMenuRef.current?.();
+                        setTimeout(() => open("privacy"), 400);
+                      }}
                       className="group inline-block font-sans text-base leading-[1.1]"
                     >
                       <NavStaggerLabel
                         text="Privacy Policy ↗"
                         className="font-sans"
                       />
-                    </a>
+                    </button>
                   </li>
                   <li data-reveal-s="">
-                    <a
-                      href="#"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        closeMenuRef.current?.();
+                        setTimeout(() => open("terms"), 400);
+                      }}
                       className="group inline-block font-sans text-base leading-[1.1]"
                     >
                       <NavStaggerLabel
                         text="Terms & Conditions ↗"
                         className="font-sans"
                       />
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -651,10 +645,6 @@ export default function Hero({ children, className }: HeroProps) {
         {children}
       </div>
 
-      <ContactModal
-        isOpen={contactOpen}
-        onClose={() => setContactOpen(false)}
-      />
     </>
   );
 }

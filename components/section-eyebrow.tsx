@@ -17,7 +17,7 @@ export default function SectionEyebrow({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       className={
-        "inline-flex w-fit items-center gap-2 self-start rounded-full bg-[#f0f0f0] px-[14px] py-[6px] " +
+        "inline-flex w-fit items-center gap-2 self-start rounded-full bg-[#f0f0f0] px-[14px] py-[6px]  mb-4" +
         (className || "")
       }
     >

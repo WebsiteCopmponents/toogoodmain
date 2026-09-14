@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import { useSiteModal } from "@/components/ContactModal";
 import {
   Check,
   X,
@@ -26,7 +26,6 @@ const pricingPlans = [
       { text: "Custom dashboard or app", included: false },
     ],
     buttonText: "Start a project",
-    href: "/contact",
   },
   {
     id: "community",
@@ -41,7 +40,6 @@ const pricingPlans = [
       { text: "Native mobile application", included: false },
     ],
     buttonText: "Start a project",
-    href: "/contact",
   },
   {
     id: "personal",
@@ -56,12 +54,12 @@ const pricingPlans = [
       { text: "Domain, email, and social management", included: true },
     ],
     buttonText: "Start a project",
-    href: "/contact",
   },
 ];
 
 export default function Pricing({ className }: { className?: string }) {
   const [activeId, setActiveId] = useState("community");
+  const { open } = useSiteModal();
 
   return (
     <section
@@ -193,15 +191,19 @@ export default function Pricing({ className }: { className?: string }) {
                 )}
               </ul>
 
-              <Link href={plan.href} className="mt-auto w-full">
-                <button
-                  className={
-                    "flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-7 py-4 font-sans text-[16px] font-semibold transition-all duration-500 group active:scale-[0.98] " +
-                    (isActive
-                      ? "bg-[#84FB6C] text-[#0A0C13] shadow-[0px_8px_24px_rgba(133,250,109,0.2)] hover:bg-[#76E161]"
-                      : "bg-white text-[#093601] hover:bg-[#84FB6C] hover:text-[#0A0C13]")
-                  }
-                >
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  open("project");
+                }}
+                className={
+                  "group mt-auto flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-7 py-4 font-sans text-[16px] font-semibold transition-all duration-500 active:scale-[0.98] " +
+                  (isActive
+                    ? "bg-[#84FB6C] text-[#0A0C13] shadow-[0px_8px_24px_rgba(133,250,109,0.2)] hover:bg-[#76E161]"
+                    : "bg-white text-[#093601] hover:bg-[#84FB6C] hover:text-[#0A0C13]")
+                }
+              >
                   {plan.buttonText}
                   <div className="relative flex h-5 w-5 items-center justify-center">
                     <ArrowRight
@@ -223,8 +225,7 @@ export default function Pricing({ className }: { className?: string }) {
                       }
                     />
                   </div>
-                </button>
-              </Link>
+              </button>
             </div>
           );
         })}

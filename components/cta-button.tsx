@@ -1,5 +1,8 @@
+"use client";
+
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import StaggerButton from "@/components/stagger-button";
+import { useSiteModal } from "@/components/ContactModal";
 
 function ArrowUpRightIcon() {
   return (
@@ -46,6 +49,7 @@ function cx(...parts: Array<string | false | undefined | null>) {
 
 export function CtaButton(props: CtaButtonProps) {
   const { children, className, ...rest } = props;
+  const { open } = useSiteModal();
   const classes = cx(primaryClass, className);
   const inner = (
     <>
@@ -67,7 +71,15 @@ export function CtaButton(props: CtaButtonProps) {
 
   const buttonRest = rest as CtaAsButton;
   return (
-    <button type={buttonRest.type ?? "button"} className={classes} {...buttonRest}>
+    <button
+      type={buttonRest.type ?? "button"}
+      className={classes}
+      {...buttonRest}
+      onClick={(event) => {
+        buttonRest.onClick?.(event);
+        if (!event.defaultPrevented) open("project");
+      }}
+    >
       {inner}
     </button>
   );

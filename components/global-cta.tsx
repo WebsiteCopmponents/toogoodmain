@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Phone } from "lucide-react";
+import { useSiteModal } from "@/components/ContactModal";
 
 const ROW_1_TAGS = [
   {
@@ -60,6 +61,7 @@ const ROW_2_TAGS = [
 ];
 
 export default function GlobalCta({ className }: { className?: string }) {
+  const { open } = useSiteModal();
   return (
     <section
       className={
@@ -86,6 +88,8 @@ export default function GlobalCta({ className }: { className?: string }) {
             </div>
             <button
               type="button"
+              aria-label="Start a project"
+              onClick={() => open("project")}
               className="w-[28px] sm:w-[32px] h-[28px] sm:h-[32px] bg-[#f1f0f1] rounded-full flex items-center justify-center text-[#545554] hover:bg-[#e0e0e0] transition-colors cursor-pointer ml-1 sm:ml-2"
             >
               <Phone size={12} className="fill-[#545554]" />

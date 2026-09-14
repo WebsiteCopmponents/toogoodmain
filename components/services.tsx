@@ -55,6 +55,27 @@ const DEFAULT_ITEMS: BenefitItem[] = [
     chat: CHAT_IMG,
     desc: "Native and cross-platform mobile apps that feel fast, intuitive, and on-brand — built for iOS and Android from a single, efficient codebase.",
   },
+  {
+    num: "05.",
+    title: "AI Automation",
+    mosaic: MOSAIC_1,
+    chat: CHAT_IMG,
+    desc: "We identify the repetitive, time-draining tasks in your business and replace them with intelligent workflows — so your team can focus on what actually needs a human.",
+  },
+  {
+    num: "06.",
+    title: "AI Chatbots",
+    mosaic: MOSAIC_2,
+    chat: CHAT_IMG,
+    desc: "Custom-trained chatbots that qualify leads, answer customer questions, and support your team 24/7 — trained on your business, not a generic script.",
+  },
+  {
+    num: "07.",
+    title: "UI/UX Design",
+    mosaic: MOSAIC_3,
+    chat: CHAT_IMG,
+    desc: "Research-backed interface design that removes friction, guides users to action, and makes every product you ship feel effortless to use.",
+  },
 ];
 
 export default function Services({
@@ -85,12 +106,12 @@ export default function Services({
           </p>
         </div>
 
-        <div className="flex h-auto w-full flex-col gap-4 md:h-[420px] md:flex-row md:gap-3">
+        <div className="grid h-auto w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-3 lg:grid-cols-4">
           {items.map((item, i) => (
             <article
               key={i}
               tabIndex={0}
-              className="group relative cursor-pointer overflow-hidden rounded-[20px] bg-white shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] max-md:flex-none md:flex-1 md:rounded-xl md:bg-[#e6ecf7] md:shadow-none md:hover:flex-[1.25] md:hover:rounded-[20px] md:hover:bg-white md:hover:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] md:focus-within:flex-[1.25] md:focus-within:rounded-[20px] md:focus-within:bg-white md:focus-within:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] motion-reduce:transition-opacity motion-reduce:duration-200"
+              className="group relative min-h-[320px] cursor-pointer overflow-hidden rounded-[20px] bg-white shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] max-md:min-h-0 max-md:flex-none md:min-h-[380px] md:rounded-xl md:bg-[#e6ecf7] md:shadow-none md:hover:rounded-[20px] md:hover:bg-white md:hover:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] md:focus-within:rounded-[20px] md:focus-within:bg-white md:focus-within:shadow-[0_12px_24px_0_rgba(51,88,223,0.1)] motion-reduce:transition-opacity motion-reduce:duration-200"
             >
               <div className="absolute inset-0 hidden flex-col justify-between px-5 pt-5 pb-10 opacity-100 transition-[opacity,transform] duration-400 ease-in-out md:flex group-hover:pointer-events-none group-hover:-translate-y-2.5 group-hover:opacity-0 group-focus-within:pointer-events-none group-focus-within:-translate-y-2.5 group-focus-within:opacity-0 motion-reduce:transform-none">
                 <div className="font-heading text-[52px] leading-none font-medium text-[#c8d3e5]">
