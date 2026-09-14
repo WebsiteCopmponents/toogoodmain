@@ -72,6 +72,7 @@ type HeroProps = {
 export default function Hero({ children, className }: HeroProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [overFooter, setOverFooter] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const { open } = useSiteModal();
   const closeMenuRef = useRef<(() => void) | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -93,6 +94,15 @@ export default function Hero({ children, className }: HeroProps) {
     );
     io.observe(spacer);
     return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -412,7 +422,11 @@ export default function Hero({ children, className }: HeroProps) {
       >
         <header
           className={
-            "fixed inset-x-0 top-0 bg-white text-black transition-all duration-300 " +
+            "fixed inset-x-0 top-0 transition-all duration-300 " +
+            (isSticky || isOpen
+              ? "bg-white text-black"
+              : "bg-transparent text-white") +
+            " " +
             (overFooter && !isOpen
               ? "pointer-events-none invisible z-0 opacity-0"
               : "z-[100]")
@@ -432,7 +446,14 @@ export default function Hero({ children, className }: HeroProps) {
                 type="button"
                 aria-expanded={isOpen}
                 aria-label={isOpen ? "close menu" : "open menu"}
-                className={`m-[-1em] flex cursor-pointer items-center justify-center gap-[0.75em] border border-transparent bg-transparent p-[1em] font-inherit text-black ${isOpen ? "rounded-xl bg-[#f4f4f4] p-2" : ""}`}
+                className={
+                  "m-[-1em] flex cursor-pointer items-center justify-center gap-[0.75em] border border-transparent bg-transparent p-[1em] font-inherit " +
+                  (isOpen
+                    ? "rounded-xl bg-[#f4f4f4] p-2 text-black"
+                    : isSticky
+                      ? "text-black"
+                      : "text-white")
+                }
               >
                 <span className="flex h-[1.25em] shrink-0 flex-col items-end justify-start overflow-hidden md:h-[1.5em] ">
                   <span
