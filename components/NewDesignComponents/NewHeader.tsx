@@ -154,7 +154,7 @@ export default function NewHeader() {
   return (
     <header
       className={
-        "new-site-header sticky top-0 z-50 w-full md:px-0 px-4" +
+        "new-site-header sticky top-0 z-50 w-full px-4 md:px-0 " +
         (scrolled ? "is-compact" : "is-expanded")
       }
     >
