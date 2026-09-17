@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X } from "lucide-react";
-import { CtaButton } from "@/components/cta-button";
+import ArrowFillButton from "@/components/NewDesignComponents/ArrowFillButton";
 
 interface FAQItemProps {
   question: string;
@@ -17,14 +17,14 @@ function FAQItem({ question, answer, isOpen, onClick, isLast }: FAQItemProps) {
   return (
     <div
       className={
-        "w-full " + (!isOpen && !isLast ? "border-b border-[#e3e3e2]" : "")
+        "w-full " + (!isOpen && !isLast ? "border-b border-black/10" : "")
       }
     >
       <div
         className={
           "transition-all duration-700 " +
           (isOpen
-            ? "bg-[#EEF5F3] rounded-[16px] p-6 my-4"
+            ? "bg-[#FFAEE7] rounded-[16px] p-6 my-4"
             : "py-[22px] bg-transparent")
         }
       >
@@ -45,7 +45,7 @@ function FAQItem({ question, answer, isOpen, onClick, isLast }: FAQItemProps) {
           <div
             className={
               "flex-shrink-0 transition-all duration-500 " +
-              (isOpen ? "text-[#264734]" : "text-[#555]")
+              (isOpen ? "text-black" : "text-[#555]")
             }
           >
             {isOpen ? <X size={18} /> : <Plus size={18} />}
@@ -115,7 +115,7 @@ export default function FAQ({ className }: { className?: string }) {
   return (
     <section
       className={
-        "w-full bg-white py-16 md:py-24 px-6 md:px-[60px] font-sans " +
+        "w-full bg-[var(--new-site-background-color)] py-16 md:py-24 px-6 md:px-[60px] font-sans " +
         (className || "")
       }
     >
@@ -173,7 +173,19 @@ export default function FAQ({ className }: { className?: string }) {
                 ease: [0.25, 0.1, 0.25, 1] as const,
               }}
             >
-              <CtaButton>Start a project</CtaButton>
+              <ArrowFillButton
+              href="#contact"
+              btnText="Start a project"
+              className="new-site-header-fill-btn px-6 py-5"
+              bgColor="var(--new-site-button-primary-bg-color)"
+              textColor="var(--new-site-button-primary-text-color)"
+              fillBgColor="var(--new-site-button-secondary-bg-color)"
+              fillTextColor="#000000"
+              hoverFillBgColor="var(--new-site-button-secondary-bg-color)"
+              hoverFillTextColor="#000000"
+              arrowColor="#000000"
+              hoverArrowColor="#000000"
+            />
             </motion.div>
           </div>
 

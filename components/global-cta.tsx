@@ -65,7 +65,7 @@ export default function GlobalCta({ className }: { className?: string }) {
   return (
     <section
       className={
-        "w-full bg-[#f9f8f8] py-16 md:py-[120px] overflow-hidden selection:bg-black selection:text-white font-sans " +
+        "w-full bg-[var(--new-site-background-color)] py-16 md:py-[120px] overflow-hidden selection:bg-black selection:text-white font-sans " +
         (className || "")
       }
     >
@@ -90,9 +90,9 @@ export default function GlobalCta({ className }: { className?: string }) {
               type="button"
               aria-label="Start a project"
               onClick={() => open("project")}
-              className="w-[28px] sm:w-[32px] h-[28px] sm:h-[32px] bg-[#f1f0f1] rounded-full flex items-center justify-center text-[#545554] hover:bg-[#e0e0e0] transition-colors cursor-pointer ml-1 sm:ml-2"
+              className="w-[28px] sm:w-[32px] h-[28px] sm:h-[32px] bg-[#FFAEE7] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-colors cursor-pointer ml-1 sm:ml-2"
             >
-              <Phone size={12} className="fill-[#545554]" />
+              <Phone size={12} className="fill-current" />
             </button>
           </div>
         </div>

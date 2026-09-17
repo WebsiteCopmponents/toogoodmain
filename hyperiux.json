@@ -1,0 +1,26 @@
+{
+  "$schema": "https://vault.hyperiux.com/schema.json",
+  "framework": "next",
+  "router": "app",
+  "tailwind": {
+    "config": null,
+    "css": "app/globals.css"
+  },
+  "aliases": {
+    "components": "@/components",
+    "effects": "@/components/effects",
+    "hooks": "@/hooks",
+    "lib": "@/lib"
+  },
+  "installedEffects": {
+    "zoom-slider": {
+      "installedAt": "2026-09-16T23:11:35.763Z"
+    },
+    "text-convergence": {
+      "installedAt": "2026-09-16T23:41:17.423Z"
+    },
+    "sticky-content-wrapper": {
+      "installedAt": "2026-09-17T00:37:53.019Z"
+    }
+  }
+}

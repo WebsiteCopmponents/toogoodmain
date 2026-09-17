@@ -3,14 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useSiteModal } from "@/components/ContactModal";
-import {
-  Check,
-  X,
-  Headphones,
-  ShieldCheck,
-  ArrowRight,
-  ArrowUpRight,
-} from "lucide-react";
+import { Check, X, Headphones, ShieldCheck } from "lucide-react";
+import ArrowFillButton from "@/components/NewDesignComponents/ArrowFillButton";
 
 const pricingPlans = [
   {
@@ -64,15 +58,15 @@ export default function Pricing({ className }: { className?: string }) {
   return (
     <section
       className={
-        "w-full bg-white py-[80px] md:py-[120px] px-6 md:px-[135px] flex flex-col items-center " +
+        "flex w-full flex-col items-center bg-[var(--new-site-background-color)] px-6 py-[80px] text-[var(--new-site-entire-site-text-color)] md:px-[135px] md:py-[120px] " +
         (className || "")
       }
     >
       <div className="flex flex-col items-center gap-4 text-center max-w-[1170px] mx-auto mb-[80px]">
-        <h2 className="text-[#093601] font-heading text-[32px] md:text-[52px] font-medium leading-[1.1] md:leading-[56px] tracking-[-0.8px]">
+        <h2 className="font-heading text-[32px] md:text-[52px] font-medium leading-[1.1] md:leading-[56px] tracking-[-0.8px] text-black">
           Simple studio <br className="hidden md:block" /> packages
         </h2>
-        <p className="text-[#093601] font-sans text-[16px] md:text-[18px] font-normal leading-[26px] tracking-[-0.18px] opacity-80 max-w-[600px]">
+        <p className="max-w-[600px] font-sans text-[16px] leading-[26px] font-normal tracking-[-0.18px] text-black/70 md:text-[18px]">
           Pick the shape of the work — site, product, or the full studio.
         </p>
       </div>
@@ -88,15 +82,15 @@ export default function Pricing({ className }: { className?: string }) {
               className={
                 "relative flex flex-col items-start p-8 rounded-[30px] transition-all duration-500 transform-gpu cursor-default " +
                 (isActive
-                  ? "bg-[#093601] scale-[1.02] shadow-[0px_20px_40px_rgba(9,54,0,0.15)] z-10"
-                  : "bg-[#ECFBEA] scale-100 shadow-none z-0")
+                  ? "z-10 scale-[1.02] bg-black shadow-[0px_20px_40px_rgba(0,0,0,0.18)]"
+                  : "z-0 scale-100 bg-[#ece7dc] shadow-none")
               }
             >
               <div className="flex flex-col gap-2 mb-6 w-full">
                 <h3
                   className={
                     "font-heading text-[24px] font-medium leading-tight transition-colors duration-500 " +
-                    (isActive ? "text-white" : "text-[#093601]")
+                    (isActive ? "text-white" : "text-black")
                   }
                 >
                   {plan.title}
@@ -104,7 +98,7 @@ export default function Pricing({ className }: { className?: string }) {
                 <p
                   className={
                     "font-sans text-[15px] leading-[22px] transition-colors duration-500 " +
-                    (isActive ? "text-white/80" : "text-[#093601]/70")
+                    (isActive ? "text-white/80" : "text-black/70")
                   }
                 >
                   {plan.description}
@@ -115,7 +109,7 @@ export default function Pricing({ className }: { className?: string }) {
                 <span
                   className={
                     "font-sans text-[16px] leading-[24px] tracking-[-0.4px] transition-colors duration-500 " +
-                    (isActive ? "text-white/70" : "text-[#093601]/70")
+                    (isActive ? "text-white/70" : "text-black/70")
                   }
                 >
                   Start from
@@ -124,7 +118,7 @@ export default function Pricing({ className }: { className?: string }) {
                   <span
                     className={
                       "font-heading text-[52px] font-medium leading-[56px] tracking-[-0.8px] transition-colors duration-500 " +
-                      (isActive ? "text-white" : "text-[#093601]")
+                      (isActive ? "text-white" : "text-black")
                     }
                   >
                     {"$" + plan.price}
@@ -132,7 +126,7 @@ export default function Pricing({ className }: { className?: string }) {
                   <span
                     className={
                       "font-sans text-[16px] leading-[24px] tracking-[-0.4px] transition-colors duration-500 " +
-                      (isActive ? "text-white/70" : "text-[#093601]/70")
+                      (isActive ? "text-white/70" : "text-black/70")
                     }
                   >
                     /month
@@ -143,7 +137,7 @@ export default function Pricing({ className }: { className?: string }) {
               <div
                 className={
                   "w-full h-px mb-8 transition-colors duration-500 " +
-                  (isActive ? "bg-white/10" : "bg-[#093601]/10")
+                  (isActive ? "bg-white/10" : "bg-black/10")
                 }
               />
 
@@ -159,11 +153,11 @@ export default function Pricing({ className }: { className?: string }) {
                           "flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-500 " +
                           (feature.included
                             ? isActive
-                              ? "bg-white text-[#093601]"
-                              : "bg-[#093601]/10 text-[#093601]"
+                              ? "bg-[#FFAEE7] text-black"
+                              : "bg-black/10 text-black"
                             : isActive
                               ? "bg-white/20 text-white/60"
-                              : "text-[#093601]/30")
+                              : "text-black/30")
                         }
                       >
                         {feature.included ? (
@@ -180,8 +174,8 @@ export default function Pricing({ className }: { className?: string }) {
                               ? "text-white"
                               : "text-white/40"
                             : feature.included
-                              ? "text-[#093601]"
-                              : "text-[#093601]/40")
+                              ? "text-black"
+                              : "text-black/40")
                         }
                       >
                         {feature.text}
@@ -191,50 +185,36 @@ export default function Pricing({ className }: { className?: string }) {
                 )}
               </ul>
 
-              <button
-                type="button"
+              <ArrowFillButton
+                href="#contact"
+                btnText={plan.buttonText}
+                className="new-site-header-fill-btn mt-auto w-full justify-center px-6 py-5"
+                bgColor={
+                  isActive
+                    ? "var(--new-site-button-secondary-bg-color)"
+                    : "#ffffff"
+                }
+                textColor="#000000"
+                fillBgColor="black"
+                fillTextColor="white"
+                hoverFillBgColor="black"
+                hoverFillTextColor="white"
+                arrowColor="white"
+                hoverArrowColor="white"
                 onClick={(event) => {
                   event.stopPropagation();
                   open("project");
                 }}
-                className={
-                  "group mt-auto flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-7 py-4 font-sans text-[16px] font-semibold transition-all duration-500 active:scale-[0.98] " +
-                  (isActive
-                    ? "bg-[#84FB6C] text-[#0A0C13] shadow-[0px_8px_24px_rgba(133,250,109,0.2)] hover:bg-[#76E161]"
-                    : "bg-white text-[#093601] hover:bg-[#84FB6C] hover:text-[#0A0C13]")
-                }
-              >
-                  {plan.buttonText}
-                  <div className="relative flex h-5 w-5 items-center justify-center">
-                    <ArrowRight
-                      size={18}
-                      className={
-                        "absolute transition-all duration-500 " +
-                        (isActive
-                          ? "opacity-0 scale-50"
-                          : "opacity-100 scale-100 group-hover:opacity-0 group-hover:scale-50")
-                      }
-                    />
-                    <ArrowUpRight
-                      size={18}
-                      className={
-                        "absolute transition-all duration-500 " +
-                        (isActive
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100")
-                      }
-                    />
-                  </div>
-              </button>
+              />
             </div>
           );
         })}
       </div>
 
       <div className="flex flex-col items-center gap-8 md:gap-6 w-full max-w-[350px] md:max-w-none mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 text-[#093601] w-full self-stretch">
+        <div className="flex w-full flex-col items-center justify-center gap-4 self-stretch text-black md:flex-row md:gap-12">
           <div className="flex items-center gap-3">
-            <div className="w-[18px] h-[18px] rounded-full bg-[#093601] flex items-center justify-center flex-shrink-0">
+            <div className="flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-black">
               <X size={10} className="text-white" strokeWidth={3} />
             </div>
             <span className="font-sans text-[14px] md:text-[16px] font-normal leading-[22px] md:leading-normal tracking-[-0.4px] opacity-90 md:opacity-100">
@@ -242,7 +222,7 @@ export default function Pricing({ className }: { className?: string }) {
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-[18px] h-[18px] rounded-full bg-[#093601] flex items-center justify-center flex-shrink-0">
+            <div className="flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-black">
               <Headphones size={10} className="text-white" strokeWidth={3} />
             </div>
             <span className="font-sans text-[14px] md:text-[16px] font-normal leading-[22px] md:leading-normal tracking-[-0.4px] opacity-90 md:opacity-100">
@@ -250,7 +230,7 @@ export default function Pricing({ className }: { className?: string }) {
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-[18px] h-[18px] rounded-full bg-[#093601] flex items-center justify-center flex-shrink-0">
+            <div className="flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-black">
               <ShieldCheck size={10} className="text-white" strokeWidth={3} />
             </div>
             <span className="font-sans text-[14px] md:text-[16px] font-normal leading-[22px] md:leading-normal tracking-[-0.4px] opacity-90 md:opacity-100">
@@ -259,7 +239,7 @@ export default function Pricing({ className }: { className?: string }) {
           </div>
         </div>
 
-        <div className="flex items-center -space-x-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.04)] bg-[#ECFBEA] rounded-full p-2 flex gap-2 shadow-sm">
+        <div className="flex items-center gap-2 rounded-full bg-[var(--new-site-background-color)] p-2 ring-1 ring-black/10">
           <div className="relative w-[80px] h-[32px] aspect-[5/2]">
             <Image
               src="https://cdn.jiro.build/Solra/All%20Images/Avater%203%20man.png"
@@ -269,7 +249,7 @@ export default function Pricing({ className }: { className?: string }) {
             />
           </div>
           <div className="flex items-center px-3 py-1 ">
-            <span className="text-[#093601] font-sans text-[12px] md:text-[14px] font-normal md:font-medium leading-[18px] md:leading-[22px] tracking-[-0.192px] md:tracking-normal opacity-90">
+            <span className="font-sans text-[12px] leading-[18px] font-normal tracking-[-0.192px] text-black md:text-[14px] md:leading-[22px] md:font-medium md:tracking-normal">
               Join thousands who rely on our coaching programs every day.
             </span>
           </div>

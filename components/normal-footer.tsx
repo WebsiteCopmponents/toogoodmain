@@ -10,7 +10,7 @@ export default function NormalFooter({ className }: { className?: string }) {
   return (
     <footer
       className={
-        "bg-[#034F47] text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden font-sans " +
+        "bg-[var(--new-site-button-primary-bg-color)] text-[var(--new-site-button-primary-text-color)] pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden font-sans " +
         (className || "")
       }
     >
@@ -42,7 +42,7 @@ export default function NormalFooter({ className }: { className?: string }) {
             <button
               type="button"
               onClick={() => setEmail("")}
-              className="w-full min-w-[140px] rounded-full bg-[#034F47] px-8 py-4 font-sans text-[15px] font-bold text-white transition-colors hover:bg-[#023d36] sm:w-auto"
+              className="w-full min-w-[140px] rounded-full bg-[#FFAEE7] px-8 py-4 font-sans text-[15px] font-bold text-black transition-colors hover:bg-white sm:w-auto"
             >
               Subscribe
             </button>

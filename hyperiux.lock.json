@@ -1,0 +1,27 @@
+{
+  "components": {
+    "zoom-slider": {
+      "version": "1.0.1",
+      "installedAt": "2026-09-16T23:11:35.761Z",
+      "files": {
+        "src/components/effects/zoom-slider/index.tsx": "sha256:d49ada9c0e35ffb1b6920885e42df6346613062d55686ff2c169db82ee739fb9",
+        "src/components/effects/zoom-slider/ZoomSliderComp.tsx": "sha256:c7308e53b4e23071cf4793b7e1e0f5ca96f858de4ed1d1d2cd92b5122847658d"
+      }
+    },
+    "text-convergence": {
+      "version": "1.0.1",
+      "installedAt": "2026-09-16T23:41:17.421Z",
+      "files": {
+        "src/components/effects/text-convergence/index.tsx": "sha256:ae1fb1bb72873b39dbc9be873d54e61842d03d7e22b9c136db68bf782bbdab92"
+      }
+    },
+    "sticky-content-wrapper": {
+      "version": "1.0.1",
+      "installedAt": "2026-09-17T00:37:53.015Z",
+      "files": {
+        "src/components/effects/sticky-content-wrapper/index.tsx": "sha256:d94657286946bfbb65a4620cc24ef5f2bad77eb480e0948678abbb51e6f86ba8",
+        "src/components/effects/sticky-content-wrapper/StickyContentComp.tsx": "sha256:da4859edaef539b476c277d115843ce697fd6acf283ece9b466d2e254ab82e2d"
+      }
+    }
+  }
+}

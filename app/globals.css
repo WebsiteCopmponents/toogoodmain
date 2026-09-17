@@ -10,6 +10,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-new-site-bg: #f9f4ea;
+  --color-new-site-primary: #000000;
+  --color-new-site-primary-fg: #ffffff;
+  --color-new-site-secondary: #ffaee7;
+  --color-new-site-fg: #000000;
   --font-sans: var(--font-circular);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sorts-mill);
@@ -70,4 +75,13 @@ body {
 
 body[data-menu-status="open"] {
   overflow: hidden;
+}
+
+:root {
+  --new-site-background-color: #f9f4ea;
+  --new-site-button-primary-bg-color: black;
+  --new-site-button-primary-text-color: white;
+  --new-site-button-secondary-bg-color: #ffaee7;
+  --new-site-button-transparent-button-bg-color: transparent;
+  --new-site-entire-site-text-color: #000000;
 }
