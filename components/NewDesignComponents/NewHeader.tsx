@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { AnimatePresence, motion, useSpring } from "framer-motion";
 import ArrowFillButton from "@/components/NewDesignComponents/ArrowFillButton";
+import { useSiteModal } from "@/components/ContactModal";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -22,6 +23,8 @@ const BLOB_SPRING = {
 type PillBox = { x: number; y: number; w: number; h: number };
 
 function HeaderCtas({ onNavigate }: { onNavigate?: () => void }) {
+  const { open } = useSiteModal();
+
   return (
     <>
       <a
@@ -43,13 +46,18 @@ function HeaderCtas({ onNavigate }: { onNavigate?: () => void }) {
         hoverFillTextColor="#000000"
         arrowColor="#000000"
         hoverArrowColor="#000000"
-        onClick={onNavigate}
+        onClick={(event) => {
+          event.preventDefault();
+          onNavigate?.();
+          open("project");
+        }}
       />
     </>
   );
 }
 
 export default function NewHeader() {
+  const { open } = useSiteModal();
   const navRef = useRef<HTMLElement | null>(null);
   const pillRef = useRef<PillBox | null>(null);
   const [pill, setPill] = useState<PillBox | null>(null);
@@ -76,7 +84,11 @@ export default function NewHeader() {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth >= 768 && !scrolled) {
+    if (
+      typeof window !== "undefined" &&
+      window.innerWidth >= 768 &&
+      !scrolled
+    ) {
       setMenuOpen(false);
     }
   }, [scrolled]);
@@ -142,17 +154,13 @@ export default function NewHeader() {
   return (
     <header
       className={
-        "new-site-header sticky top-0 z-50 w-full " +
-        (scrolled ? "is-compact" : "")
+        "new-site-header sticky top-0 z-50 w-full md:px-0 px-4" +
+        (scrolled ? "is-compact" : "is-expanded")
       }
     >
       <div className="new-site-header-inner">
         <div className="new-site-header-left">
-          <a
-            href="/new-design"
-            aria-label="TooGood.agency"
-            className="new-site-logo"
-          >
+          <a href="/" aria-label="TooGood.agency" className="new-site-logo">
             <Image
               src="/toogood-logo.png"
               alt="TooGood.agency"
@@ -196,6 +204,12 @@ export default function NewHeader() {
                 key={link.href}
                 href={link.href}
                 className="new-site-nav-link"
+                onClick={(event) => {
+                  if (link.href === "#contact") {
+                    event.preventDefault();
+                    open("project");
+                  }
+                }}
                 onMouseEnter={(event) => movePillTo(event.currentTarget)}
                 onMouseMove={disturb}
                 onFocus={(event) => movePillTo(event.currentTarget)}
@@ -211,7 +225,9 @@ export default function NewHeader() {
         </div>
 
         <div className="new-site-header-ctas">
-          <HeaderCtas />
+          <div className="new-site-header-ctas-inline">
+            <HeaderCtas />
+          </div>
           <button
             type="button"
             className="new-site-header-hamburger"
@@ -254,7 +270,12 @@ export default function NewHeader() {
               initial={{ opacity: 0, scale: 0.72, y: -28, x: 28 }}
               animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
               exit={{ opacity: 0, scale: 0.86, y: -16, x: 16 }}
-              transition={{ type: "spring", stiffness: 320, damping: 22, mass: 0.7 }}
+              transition={{
+                type: "spring",
+                stiffness: 320,
+                damping: 22,
+                mass: 0.7,
+              }}
             >
               <motion.nav
                 className="flex flex-col gap-1"
@@ -273,7 +294,13 @@ export default function NewHeader() {
                     key={link.href}
                     href={link.href}
                     className="rounded-full px-4 py-3 text-[15px] font-medium text-black transition-colors hover:bg-[#e4ddd1]"
-                    onClick={closeMenu}
+                    onClick={(event) => {
+                      if (link.href === "#contact") {
+                        event.preventDefault();
+                        open("project");
+                      }
+                      closeMenu();
+                    }}
                     variants={{
                       hidden: { opacity: 0, y: 10 },
                       show: { opacity: 1, y: 0 },

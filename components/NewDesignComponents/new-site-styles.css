@@ -6,7 +6,7 @@
 /* New-design header — fixed 1340px shell + explicit nav gaps */
 .new-site-header {
   width: 100%;
-  background: var(--new-site-background-color);
+  background: transparent;
   color: var(--new-site-entire-site-text-color);
 }
 
@@ -141,6 +141,12 @@
   flex-shrink: 0;
 }
 
+.new-site-header-ctas-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .new-site-header-fill-btn {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
@@ -182,6 +188,10 @@
 @media (max-width: 767px) {
   .new-site-header-hamburger {
     display: flex;
+  }
+
+  .new-site-header-ctas-inline {
+    display: none;
   }
 }
 

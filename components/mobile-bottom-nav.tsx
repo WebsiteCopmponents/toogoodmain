@@ -1,21 +1,7 @@
 "use client";
 
-import {
-  CALL_HREF,
-  WHATSAPP_HREF,
-  useSiteModal,
-} from "@/components/ContactModal";
-import { Home, Phone } from "lucide-react";
-
-const NAV_SERVICES = [
-  "Web Design",
-  "Web Development",
-  "Web Applications",
-  "Mobile Applications",
-  "AI Automation",
-  "AI Chatbots",
-  "UI/UX Design",
-];
+import { CALL_HREF, WHATSAPP_HREF, useSiteModal } from "@/components/ContactModal";
+import { Phone } from "lucide-react";
 
 function WhatsAppGlyph({ className }: { className?: string }) {
   return (
@@ -28,75 +14,33 @@ function WhatsAppGlyph({ className }: { className?: string }) {
   );
 }
 
-const pillClass =
-  "inline-flex shrink-0 items-center gap-1.5 rounded-2xl bg-[#f6f6f7] hover:bg-[#093601] hover:text-white px-3.5 py-2.5 text-[13px] font-medium whitespace-nowrap text-black transition-colors active:bg-[#034F47] active:text-white";
-
 export default function MobileBottomNav() {
-  const { open, isOpen } = useSiteModal();
+  const { isOpen } = useSiteModal();
 
   if (isOpen) return null;
 
   return (
     <nav
-      aria-label="Mobile"
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] md:hidden"
+      aria-label="Call and WhatsApp"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] flex justify-center p-4"
     >
-      <div className="pointer-events-auto ">
-        <div className="relative overflow-hidden  bg-white/95 pl-0 pr-2 h-[52px] flex items-center shadow-[0_12px_40px_rgba(0,0,0,0.16)] ring-1 ring-black/5 backdrop-blur-md">
-          {/* Index-1: sticky active Home tab */}
-          <div className="absolute z-10  h-full">
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex h-full items-center gap-1.5  bg-[#093601] px-3.5 text-[13px] font-medium text-white  ring-1 ring-black/5"
-            >
-              <Home size={15} strokeWidth={2.25} />
-              Home
-            </button>
-          </div>
-
-          {/* Index-2: horizontal scroll under Home */}
-          <div className="overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max items-center gap-2 py-0.5 pr-1 pl-[5.75rem]">
-              {NAV_SERVICES.map((service) => (
-                <button
-                  key={service}
-                  type="button"
-                  onClick={() => open("project")}
-                  className={pillClass}
-                >
-                  {service}
-                </button>
-              ))}
-
-              <button
-                type="button"
-                onClick={() => open("project")}
-                className={pillClass}
-              >
-                Contact
-              </button>
-
-              <a href={CALL_HREF} className={pillClass}>
-                <Phone size={14} />
-                Call
-              </a>
-
-              <a
-                href={WHATSAPP_HREF}
-                target="_blank"
-                rel="noreferrer"
-                className={
-                  pillClass +
-                  " bg-[#25D366] text-white active:bg-[#1ebe57] active:text-white"
-                }
-              >
-                <WhatsAppGlyph className="size-3.5" />
-                WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
+      <div className="pointer-events-auto grid w-full max-w-[360px] grid-cols-2 gap-3">
+        <a
+          href={CALL_HREF}
+          className="flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3.5 text-[14px] font-medium text-black shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-colors hover:bg-black hover:text-white"
+        >
+          <Phone size={16} />
+          Call
+        </a>
+        <a
+          href={WHATSAPP_HREF}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-center gap-2 rounded-full bg-[#ffaee7] px-4 py-3.5 text-[14px] font-medium text-black shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-colors hover:bg-black hover:text-white"
+        >
+          <WhatsAppGlyph className="size-4" />
+          WhatsApp
+        </a>
       </div>
     </nav>
   );

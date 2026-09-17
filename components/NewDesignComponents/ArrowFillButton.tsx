@@ -6,9 +6,11 @@ import {
   useState,
   type ComponentPropsWithoutRef,
   type CSSProperties,
+  type MouseEvent,
   type PointerEvent,
 } from "react";
 import { ArrowRight } from "lucide-react";
+import { useSiteModal } from "@/components/ContactModal";
 
 const DEFAULT_HREF = "#";
 const COMPACT_LAYOUT_BREAKPOINT = 1280;
@@ -100,8 +102,10 @@ function ArrowFillButton({
   arrowColor,
   hoverArrowColor,
 
+  onClick,
   ...props
 }: ArrowFillButtonProps) {
+  const { open } = useSiteModal();
   const [isReady, setIsReady] = useState(false);
   const [isCompactLayout, setIsCompactLayout] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -216,11 +220,21 @@ function ArrowFillButton({
     clearPressedState();
   };
 
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event);
+    if (event.defaultPrevented) return;
+    if (href === "#contact") {
+      event.preventDefault();
+      open("project");
+    }
+  };
+
   return (
     <a
       href={href}
       {...props}
       data-pressed={isPressed ? "true" : "false"}
+      onClick={handleClick}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerCancel}

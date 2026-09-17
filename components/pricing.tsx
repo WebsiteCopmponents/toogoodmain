@@ -203,6 +203,7 @@ export default function Pricing({ className }: { className?: string }) {
                 hoverArrowColor="white"
                 onClick={(event) => {
                   event.stopPropagation();
+                  event.preventDefault();
                   open("project");
                 }}
               />

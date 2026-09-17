@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import FloatingDotNav from "@/components/NewDesignComponents/FloatingDotNav";
+import { useSiteModal } from "@/components/ContactModal";
 
 type Service = {
   id: string;
@@ -70,6 +71,8 @@ function getPageItems(page: number) {
 }
 
 function PhoneVisual() {
+  const { open } = useSiteModal();
+
   return (
     <div className="flex h-full items-end justify-center overflow-hidden px-6 pt-4">
       <div className="h-full w-[min(100%,11.5rem)] overflow-hidden rounded-[1.6rem] border-[5px] border-black/80 bg-[#1a1a1a] shadow-[0_16px_32px_rgba(0,0,0,0.22)]">
@@ -81,10 +84,14 @@ function PhoneVisual() {
             <div className="mb-1.5 h-12 rounded-lg bg-[#d8ecf8]" />
             <div className="h-1.5 w-3/4 rounded-full bg-black/10" />
           </div>
-          <div className="mt-auto rounded-xl bg-white p-2 shadow-sm">
+          <button
+            type="button"
+            onClick={() => open("project")}
+            className="mt-auto rounded-xl bg-white p-2 text-left shadow-sm"
+          >
             <p className="text-[10px] font-semibold text-black">Book a demo</p>
             <div className="mt-2 h-6 rounded-full bg-black" />
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -280,38 +287,6 @@ export default function BentoGrid() {
       aria-labelledby="bento-heading"
       className="relative bg-[var(--new-site-background-color)] py-20 text-[var(--new-site-entire-site-text-color)] md:py-28"
     >
-      <FloatingDotNav
-        canPrev={isDesktop ? page > 0 : mobileSlide > 0}
-        canNext={
-          isDesktop
-            ? page < PAGE_COUNT - 1
-            : mobileSlide < SERVICES.length - 1
-        }
-        onPrev={() => {
-          if (isDesktop) {
-            setPage((current) => Math.max(0, current - 1));
-            return;
-          }
-          pauseMobile.current = true;
-          setMobileSlide((current) => {
-            const next = Math.max(0, current - 1);
-            scrollMobileTo(next);
-            return next;
-          });
-        }}
-        onNext={() => {
-          if (isDesktop) {
-            setPage((current) => Math.min(PAGE_COUNT - 1, current + 1));
-            return;
-          }
-          pauseMobile.current = true;
-          setMobileSlide((current) => {
-            const next = Math.min(SERVICES.length - 1, current + 1);
-            scrollMobileTo(next);
-            return next;
-          });
-        }}
-      />
       <div className="mx-auto w-full max-w-[1080px] px-5 md:px-8">
         <h2
           id="bento-heading"
@@ -377,6 +352,38 @@ export default function BentoGrid() {
           ))}
         </div>
       </div>
+      <FloatingDotNav
+        canPrev={isDesktop ? page > 0 : mobileSlide > 0}
+        canNext={
+          isDesktop
+            ? page < PAGE_COUNT - 1
+            : mobileSlide < SERVICES.length - 1
+        }
+        onPrev={() => {
+          if (isDesktop) {
+            setPage((current) => Math.max(0, current - 1));
+            return;
+          }
+          pauseMobile.current = true;
+          setMobileSlide((current) => {
+            const next = Math.max(0, current - 1);
+            scrollMobileTo(next);
+            return next;
+          });
+        }}
+        onNext={() => {
+          if (isDesktop) {
+            setPage((current) => Math.min(PAGE_COUNT - 1, current + 1));
+            return;
+          }
+          pauseMobile.current = true;
+          setMobileSlide((current) => {
+            const next = Math.min(SERVICES.length - 1, current + 1);
+            scrollMobileTo(next);
+            return next;
+          });
+        }}
+      />
     </section>
   );
 }

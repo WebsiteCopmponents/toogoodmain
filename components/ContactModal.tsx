@@ -84,7 +84,7 @@ export function SiteModalProvider({ children }: { children: ReactNode }) {
 
 const VIEWS: Record<ModalKind, { title: string; size: "md" | "lg" }> = {
   project: {
-    title: "Book an appointment",
+    title: "Get in touch",
     size: "lg",
   },
   privacy: {
@@ -118,8 +118,8 @@ function WhatsAppGlyph({ className }: { className?: string }) {
 function ContactCtas({ surface }: { surface: "panel" | "form" }) {
   const callClass =
     surface === "panel"
-      ? "flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3.5 text-[14px] font-medium text-black transition-colors hover:bg-[#034F47] hover:text-white"
-      : "flex items-center justify-center gap-2 rounded-full border border-[#e6e6e6] bg-[#f6f6f7] px-4 py-3.5 text-[14px] font-medium text-black transition-colors hover:bg-[#034F47] hover:text-white";
+      ? "flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3.5 text-[14px] font-medium text-black transition-colors hover:bg-black hover:text-white"
+      : "flex items-center justify-center gap-2 rounded-full border border-[#d4cdc0] bg-[#e4ddd1] px-4 py-3.5 text-[14px] font-medium text-black transition-colors hover:bg-black hover:text-white";
 
   return (
     <div className="grid grid-cols-2 gap-3">
@@ -131,7 +131,7 @@ function ContactCtas({ surface }: { surface: "panel" | "form" }) {
         href={WHATSAPP_HREF}
         target="_blank"
         rel="noreferrer"
-        className="flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3.5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
+        className="flex items-center justify-center gap-2 rounded-full bg-[#ffaee7] px-4 py-3.5 text-[14px] font-medium text-black transition-colors hover:bg-black hover:text-white"
       >
         <WhatsAppGlyph className="size-4" />
         WhatsApp
@@ -182,7 +182,7 @@ function SiteModal({
         aria-modal="true"
         aria-labelledby="site-modal-title"
         className={
-          "relative flex max-h-[min(92vh,900px)] w-full flex-col overflow-hidden rounded-[28px] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.22)] " +
+          "relative flex max-h-[min(92vh,900px)] w-full flex-col overflow-hidden rounded-[40px] bg-[var(--new-site-background-color)] shadow-[0_24px_80px_rgba(0,0,0,0.22)] " +
           (state.mode === "project"
             ? "max-w-[980px]"
             : meta.size === "lg"
@@ -195,7 +195,7 @@ function SiteModal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 z-20 flex size-9 items-center justify-center rounded-full bg-white/90 text-[#555] shadow-sm transition-colors hover:bg-[#f6f6f7] hover:text-black sm:top-5 sm:right-5"
+          className="absolute top-4 right-4 z-20 flex size-9 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-[#ffaee7] sm:top-5 sm:right-5"
         >
           <X size={18} />
         </button>
@@ -267,7 +267,7 @@ const PLANS = {
 };
 
 const inputClass =
-  "w-full rounded-2xl border border-[#e6e6e6] bg-[#f6f6f7] py-3 pr-4 pl-11 text-sm text-black outline-none placeholder:text-[#8a8a8a] focus:border-[#034F47] focus:bg-white";
+  "w-full rounded-2xl border border-[#d4cdc0] bg-[#e4ddd1] py-3 pr-4 pl-11 text-sm text-black outline-none placeholder:text-[#8a8a8a] focus:border-black focus:bg-white";
 
 const TIME_SLOTS = [
   "09:00",
@@ -351,10 +351,10 @@ function ServiceSelect({
         aria-controls={listId}
         onClick={() => setOpen((prev) => !prev)}
         className={
-          "flex w-full items-center gap-3 rounded-2xl border bg-[#f6f6f7] px-4 py-3.5 text-left text-sm transition-colors " +
+          "flex w-full items-center gap-3 rounded-2xl border bg-[#e4ddd1] px-4 py-3.5 text-left text-sm transition-colors " +
           (open
-            ? "border-[#034F47] bg-white"
-            : "border-[#e6e6e6] hover:border-[#cfcfcf]")
+            ? "border-black bg-white"
+            : "border-[#d4cdc0] hover:border-black/40")
         }
       >
         <Briefcase size={16} className="shrink-0 text-[#8a8a8a]" />
@@ -379,7 +379,7 @@ function ServiceSelect({
         <ul
           id={listId}
           role="listbox"
-          className="absolute top-[calc(100%+8px)] right-0 left-0 z-30 max-h-56 overflow-y-auto rounded-2xl border border-[#e6e6e6] bg-white p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.12)]"
+          className="absolute top-[calc(100%+8px)] right-0 left-0 z-30 max-h-56 overflow-y-auto rounded-2xl border border-[#d4cdc0] bg-white p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.12)]"
         >
           {SERVICES.map((service) => {
             const selected = value === service;
@@ -396,8 +396,8 @@ function ServiceSelect({
                   className={
                     "flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-sm transition-colors " +
                     (selected
-                      ? "bg-[#034F47] text-white"
-                      : "text-black hover:bg-[#f6f6f7]")
+                      ? "bg-black text-white"
+                      : "text-black hover:bg-[#e4ddd1]")
                   }
                 >
                   {service}
@@ -426,7 +426,7 @@ function DatePickerField({
 
   return (
     <div className="relative">
-      <div className="pointer-events-none flex w-full items-center gap-3 rounded-2xl border border-[#e6e6e6] bg-[#f6f6f7] px-4 py-3.5 text-left text-sm">
+      <div className="pointer-events-none flex w-full items-center gap-3 rounded-2xl border border-[#d4cdc0] bg-[#e4ddd1] px-4 py-3.5 text-left text-sm">
         <Calendar size={16} className="shrink-0 text-[#8a8a8a]" />
         <span
           className={
@@ -481,10 +481,10 @@ function TimePickerField({
         aria-controls={listId}
         onClick={() => setOpen((prev) => !prev)}
         className={
-          "flex w-full items-center gap-3 rounded-2xl border bg-[#f6f6f7] px-4 py-3.5 text-left text-sm transition-colors " +
+          "flex w-full items-center gap-3 rounded-2xl border bg-[#e4ddd1] px-4 py-3.5 text-left text-sm transition-colors " +
           (open
-            ? "border-[#034F47] bg-white"
-            : "border-[#e6e6e6] hover:border-[#cfcfcf]")
+            ? "border-black bg-white"
+            : "border-[#d4cdc0] hover:border-black/40")
         }
       >
         <Clock size={16} className="shrink-0 text-[#8a8a8a]" />
@@ -509,7 +509,7 @@ function TimePickerField({
         <div
           id={listId}
           role="listbox"
-          className="absolute top-[calc(100%+8px)] right-0 left-0 z-30 rounded-2xl border border-[#e6e6e6] bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)]"
+          className="absolute top-[calc(100%+8px)] right-0 left-0 z-30 rounded-2xl border border-[#d4cdc0] bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)]"
         >
           <div className="grid max-h-48 grid-cols-3 gap-1.5 overflow-y-auto">
             {TIME_SLOTS.map((slot) => {
@@ -527,8 +527,8 @@ function TimePickerField({
                   className={
                     "rounded-xl px-2 py-2.5 text-[13px] font-medium transition-colors " +
                     (selected
-                      ? "bg-[#034F47] text-white"
-                      : "bg-[#f6f6f7] text-black hover:bg-[#ececec]")
+                      ? "bg-[#ffaee7] text-black"
+                      : "bg-[#e4ddd1] text-black hover:bg-black hover:text-white")
                   }
                 >
                   {formatDisplayTime(slot)}
@@ -570,8 +570,8 @@ function ChoiceCard({
       className={
         "rounded-2xl border px-4 py-3.5 text-left transition-colors " +
         (selected
-          ? "border-[#034F47] bg-[#034F47]/5"
-          : "border-[#e6e6e6] bg-[#f6f6f7] hover:border-[#cfcfcf]")
+          ? "border-black bg-[#ffaee7]"
+          : "border-[#d4cdc0] bg-[#e4ddd1] hover:border-black/40")
       }
     >
       <span className="block text-sm font-medium text-black">{title}</span>
@@ -614,7 +614,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="grid min-h-0 flex-1 grid-cols-1 overflow-hidden md:grid-cols-[0.88fr_1.12fr]">
-      <aside className="hidden flex-col gap-4 bg-[#f6f6f7] p-5 sm:p-6 md:flex md:p-7">
+      <aside className="hidden flex-col gap-4 bg-[#e4ddd1] p-5 sm:p-6 md:flex md:p-7">
         <div className="relative min-h-[200px] flex-1 overflow-hidden rounded-[24px] md:min-h-[320px]">
           <img
             src={CONTACT_IMAGE}
@@ -633,7 +633,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
           id="site-modal-title"
           className="font-heading mb-2 pr-10 text-[26px] leading-[1.15] font-medium text-black sm:text-[32px]"
         >
-          Book an appointment
+          Get in touch
         </h2>
         <p className="mb-5 text-sm leading-relaxed text-[#555]">
           Share a few details and we will confirm your slot.
@@ -698,14 +698,14 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
             <p className="mb-1.5 text-sm font-medium text-black">
               How many pages
             </p>
-            <div className="inline-flex items-center gap-3 rounded-2xl border border-[#e6e6e6] bg-[#f6f6f7] p-1.5">
+            <div className="inline-flex items-center gap-3 rounded-2xl border border-[#d4cdc0] bg-[#e4ddd1] p-1.5">
               <button
                 type="button"
                 aria-label="Decrease pages"
                 onClick={() =>
                   setField("pages", Math.max(1, formData.pages - 1))
                 }
-                className="flex size-10 items-center justify-center rounded-xl bg-white text-black transition-colors hover:bg-[#034F47] hover:text-white"
+                className="flex size-10 items-center justify-center rounded-xl bg-white text-black transition-colors hover:bg-black hover:text-white"
               >
                 <Minus size={16} />
               </button>
@@ -716,7 +716,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
                 type="button"
                 aria-label="Increase pages"
                 onClick={() => setField("pages", formData.pages + 1)}
-                className="flex size-10 items-center justify-center rounded-xl bg-white text-black transition-colors hover:bg-[#034F47] hover:text-white"
+                className="flex size-10 items-center justify-center rounded-xl bg-white text-black transition-colors hover:bg-black hover:text-white"
               >
                 <Plus size={16} />
               </button>
@@ -741,7 +741,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[#e6e6e6] bg-[#f6f6f7] px-4 py-3.5">
+          <div className="rounded-2xl border border-[#d4cdc0] bg-[#e4ddd1] px-4 py-3.5">
             <p className="text-sm font-medium text-black">Logo</p>
             <p className="mt-1 text-[13px] text-[#666]">
               Will discuss on the call
@@ -772,7 +772,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
 
           {formData.wantPlan === "yes" ? (
             <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-2 rounded-2xl bg-[#f0f0f0] p-1.5">
+              <div className="grid grid-cols-2 gap-2 rounded-2xl bg-[#e4ddd1] p-1.5">
                 <button
                   type="button"
                   onClick={() => {
@@ -814,8 +814,8 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
                     className={
                       "rounded-2xl border px-4 py-4 text-left transition-colors " +
                       (formData.plan === plan.id
-                        ? "border-[#034F47] bg-[#034F47] text-white"
-                        : "border-[#e6e6e6] bg-[#f6f6f7] text-black hover:border-[#cfcfcf]")
+                        ? "border-black bg-black text-white"
+                        : "border-[#d4cdc0] bg-[#e4ddd1] text-black hover:border-black/40")
                     }
                   >
                     <span className="block text-sm font-medium">
@@ -880,14 +880,14 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
                 placeholder="Anything we should know before the call"
                 value={formData.message}
                 onChange={(e) => setField("message", e.target.value)}
-                className="w-full resize-none rounded-2xl border border-[#e6e6e6] bg-[#f6f6f7] py-3 pr-4 pl-11 text-sm text-black outline-none placeholder:text-[#8a8a8a] focus:border-[#034F47] focus:bg-white"
+                className="w-full resize-none rounded-2xl border border-[#d4cdc0] bg-[#e4ddd1] py-3 pr-4 pl-11 text-sm text-black outline-none placeholder:text-[#8a8a8a] focus:border-black focus:bg-white"
               />
             </span>
           </label>
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-[#034F47] py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#023d36]"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#ffaee7] hover:text-black"
           >
             Book appointment
             <Send size={16} />
@@ -903,7 +903,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
               href={WHATSAPP_HREF}
               target="_blank"
               rel="noreferrer"
-              className="font-medium text-[#034F47] underline-offset-2 hover:underline"
+              className="font-medium text-black underline-offset-2 hover:underline"
             >
               Message us
             </a>

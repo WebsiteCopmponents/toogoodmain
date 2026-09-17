@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { SiteModalProvider } from "@/components/ContactModal";
+import CookieConsent from "@/components/cookie-consent";
 import MobileBottomNav from "@/components/mobile-bottom-nav";
 import "./globals.css";
 
@@ -68,10 +69,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${galnoy.variable} ${circular.variable} ${sortsMill.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col pb-[5.5rem] md:pb-0">
+      <body className="flex min-h-full flex-col pb-24">
         <SiteModalProvider>
           {children}
           <MobileBottomNav />
+          <CookieConsent />
         </SiteModalProvider>
       </body>
     </html>
