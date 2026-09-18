@@ -604,10 +604,71 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [submitState, setSubmitState] = useState<
+    "idle" | "sending" | "ok" | "error"
+  >("idle");
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!formData.service || !formData.date || !formData.time) return;
-    onClose();
+    if (!formData.service || !formData.date || !formData.time) {
+      setSubmitError("Pick a service, date, and time.");
+      setSubmitState("error");
+      return;
+    }
+
+    const selectedPlan =
+      formData.wantPlan === "yes"
+        ? PLANS[formData.billing].find((plan) => plan.id === formData.plan)
+        : undefined;
+
+    setSubmitError("");
+    setSubmitState("sending");
+
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          pages: String(formData.pages),
+          uiStyle: formData.ui === "custom" ? "Custom UI" : "Random UI",
+          logo: "Will discuss on the call",
+          service: formData.service,
+          preferredDate: formData.date,
+          preferredTime: formData.time,
+          notes: formData.message.trim(),
+          pickPlan: formData.wantPlan === "yes" ? "Yes" : "No",
+          billing:
+            formData.wantPlan === "yes"
+              ? formData.billing === "ongoing"
+                ? "Ongoing project"
+                : "One-time project"
+              : "",
+          planName: selectedPlan?.title ?? "",
+          planPrice: selectedPlan?.price ?? "",
+        }),
+      });
+
+      const body = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(body.error || "Could not send the booking.");
+      }
+
+      setSubmitState("ok");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Could not send the booking.",
+      );
+    }
   };
 
   const plans = PLANS[formData.billing];
@@ -885,13 +946,35 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
             </span>
           </label>
 
-          <button
-            type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#ffaee7] hover:text-black"
-          >
-            Book appointment
-            <Send size={16} />
-          </button>
+          {submitState === "ok" ? (
+            <div className="space-y-3">
+              <p className="rounded-2xl bg-[#e4ddd1] px-4 py-3 text-center text-sm font-medium text-black">
+                Booked. We will confirm the slot by email.
+              </p>
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex w-full items-center justify-center rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#ffaee7] hover:text-black"
+              >
+                Close
+              </button>
+            </div>
+          ) : (
+            <>
+              {submitState === "error" && submitError ? (
+                <p className="text-center text-sm text-red-700">{submitError}</p>
+              ) : null}
+
+              <button
+                type="submit"
+                disabled={submitState === "sending"}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#ffaee7] hover:text-black disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitState === "sending" ? "Sending…" : "Book appointment"}
+                <Send size={16} />
+              </button>
+            </>
+          )}
 
           <div className="md:hidden">
             <ContactCtas surface="form" />
