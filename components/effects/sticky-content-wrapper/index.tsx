@@ -1,7 +1,7 @@
 // Built using Hyperiux Vault: https://vault.hyperiux.com
 
 import { StickyContentComp } from "./StickyContentComp";
-
+//File: components/effects/sticky-content-wrapper/index.tsx
 const stickyItems = [
   {
     heading: "Healthcare",
@@ -13,8 +13,8 @@ const stickyItems = [
       "• Sites that don’t feel like a template",
     ],
     link: { href: "#contact", text: "Start a healthcare project" },
-    image:
-      "https://pub-8abee449136941f5b0a1cd2c014534e9.r2.dev/vault-listing-images/assets-images/v-01.jpg",
+    image: "/healthcare-industry.png",
+    alt: "Healthcare",
   },
   {
     heading: "Real estate",
@@ -25,22 +25,36 @@ const stickyItems = [
       "• Enquiry flows built for mobile",
       "• Agent tools that match the public site",
     ],
-    link: { href: "#contact", text: "View real estate work" },
+    link: { href: "#contact", text: "Start a real estate project" },
     image:
       "https://pub-8abee449136941f5b0a1cd2c014534e9.r2.dev/vault-listing-images/assets-images/v-02.jpg",
+    alt: "Real estate",
   },
   {
-    heading: "Restaurants",
+    heading: "Ecommerce",
     paragraph:
-      "Menus, bookings, and brand sites that feel as considered as the room — plus the SEO and ads that fill the tables mid-week.",
+      "Storefronts that load fast, merchandising that reads clearly, and checkout that doesn’t leak the sale — built for the catalogue you actually run.",
     list: [
-      "• Menus and bookings that match the brand",
-      "• Sites that feel as considered as the room",
-      "• SEO and ads that fill mid-week tables",
+      "• Collection and product pages that convert",
+      "• Checkout and account flows that stay simple",
+      "• Ops dashboards that match the storefront",
     ],
-    link: { href: "#contact", text: "Book a restaurant site" },
-    image:
-      "https://pub-8abee449136941f5b0a1cd2c014534e9.r2.dev/vault-listing-images/assets-images/v-03.jpg",
+    link: { href: "#contact", text: "Start an ecommerce project" },
+    image: "/ecommerce-industry-image.png",
+    alt: "Ecommerce",
+  },
+  {
+    heading: "SaaS",
+    paragraph:
+      "Product sites, onboarding, and app UI that explain the offer without a demo call — then the dashboard people actually live in.",
+    list: [
+      "• Marketing site and product UI in one system",
+      "• Onboarding that gets a team to value",
+      "• Dashboards built around real workflows",
+    ],
+    link: { href: "#contact", text: "Start a SaaS project" },
+    image: "/saas-industry.png",
+    alt: "SaaS",
   },
   {
     heading: "Finance",
@@ -51,9 +65,23 @@ const stickyItems = [
       "• Dashboards where the numbers are right",
       "• Journeys that don’t need a support call",
     ],
-    link: { href: "#contact", text: "Talk finance products" },
+    link: { href: "#contact", text: "Start a finance project" },
     image:
       "https://pub-8abee449136941f5b0a1cd2c014534e9.r2.dev/vault-listing-images/assets-images/v-04.jpg",
+    alt: "Finance",
+  },
+  {
+    heading: "Agencies",
+    paragraph:
+      "A studio site that shows the work, books the right briefs, and doesn’t look like every other agency template on the street.",
+    list: [
+      "• Case studies that sell the process",
+      "• Enquiry that qualifies before the call",
+      "• A site the studio can actually keep",
+    ],
+    link: { href: "#contact", text: "Start an agency project" },
+    image: "/agenciesindustry.png",
+    alt: "Agencies",
   },
 ];
 

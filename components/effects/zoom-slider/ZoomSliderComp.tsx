@@ -55,12 +55,13 @@ export function ZoomSliderComp({
   const images = sliderData;
 
   const stripRef = useRef<HTMLDivElement | null>(null);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imageWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const [viewportWidth, setViewportWidth] = useState(1440);
-  const [viewportHeight, setViewportHeight] = useState(900);
+  const [sliderHeight, setSliderHeight] = useState(900);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -76,8 +77,8 @@ export function ZoomSliderComp({
   const cardWidthMin = (isMobile ? 75 : 190) * resolvedSize;
   const cardWidthMax = (isMobile ? 260 : isTablet ? 500 : 680) * resolvedSize;
   const cardHeightMax = isMobile
-    ? Math.round(viewportHeight * 0.6 * resolvedSize)
-    : Math.round(viewportHeight * 0.82 * resolvedSize);
+    ? Math.round(sliderHeight * 0.6 * resolvedSize)
+    : Math.round(sliderHeight * 0.82 * resolvedSize);
   const cardHeightMin = (isMobile ? 80 : 50) * resolvedSize;
   const cardStep = cardWidthMax;
 
@@ -96,7 +97,9 @@ export function ZoomSliderComp({
   useEffect(() => {
     const onResize = () => {
       setViewportWidth(window.innerWidth);
-      setViewportHeight(window.innerHeight);
+      setSliderHeight(
+        sliderRef.current?.clientHeight || window.innerHeight,
+      );
     };
 
     onResize();
@@ -133,8 +136,9 @@ export function ZoomSliderComp({
 
       const loopWidth = count * cardStep;
       const viewportWidthValue = window.innerWidth;
-      const viewportHeightValue = window.innerHeight;
-      const bottom = viewportHeightValue - SLIDER_BOTTOM_OFFSET;
+      const stripHeight =
+        stripRef.current.clientHeight || sliderHeight || window.innerHeight;
+      const bottom = stripHeight - SLIDER_BOTTOM_OFFSET;
       const easingDistance =
         2 * viewportWidthValue * (resolvedEaseScrollPercentage / 100);
 
@@ -178,6 +182,7 @@ export function ZoomSliderComp({
       cardWidthMax,
       images.length,
       resolvedEaseScrollPercentage,
+      sliderHeight,
     ],
   );
 
@@ -324,40 +329,46 @@ export function ZoomSliderComp({
 
       if (!numberElement || !titleElement || !descElement) return;
 
-      const split = SplitText.create(
-        [numberElement, titleElement, descElement],
-        {
-          type: "lines",
-          mask: "lines",
-        },
-      );
-
-      gsap.set(split.lines, { yPercent: 100 });
-      gsap.set(textElement, { autoAlpha: 0 });
-
       const imageElement = imageWrap.querySelector("img");
 
       if (imageElement) {
         gsap.set(imageElement, { opacity: 1 });
       }
 
+      let split: ReturnType<typeof SplitText.create> | null = null;
+      try {
+        split = SplitText.create([numberElement, titleElement, descElement], {
+          type: "lines",
+          mask: "lines",
+        });
+        gsap.set(split.lines, { yPercent: 100 });
+        gsap.set(textElement, { autoAlpha: 0 });
+      } catch {
+        gsap.set(textElement, { autoAlpha: 0 });
+      }
+
       const onEnter = () => {
         if (textOnHover) {
           if (reduceMotion) {
-            gsap.killTweensOf([textElement, split.lines]);
-            gsap.set(split.lines, { yPercent: 0 });
+            gsap.killTweensOf(textElement);
+            if (split) {
+              gsap.killTweensOf(split.lines);
+              gsap.set(split.lines, { yPercent: 0 });
+            }
             gsap.to(textElement, {
               autoAlpha: 1,
               duration: REDUCED_MOTION_FADE_DURATION,
               ease: "power2.out",
             });
-          } else {
+          } else if (split) {
             gsap.timeline().set(textElement, { autoAlpha: 1 }).to(split.lines, {
               yPercent: 0,
               duration: 0.55,
               stagger: 0.05,
               ease: "power3.out",
             });
+          } else {
+            gsap.set(textElement, { autoAlpha: 1 });
           }
         }
 
@@ -373,14 +384,17 @@ export function ZoomSliderComp({
       const onLeave = () => {
         if (textOnHover) {
           if (reduceMotion) {
-            gsap.killTweensOf([textElement, split.lines]);
+            gsap.killTweensOf(textElement);
+            if (split) gsap.killTweensOf(split.lines);
             gsap.to(textElement, {
               autoAlpha: 0,
               duration: REDUCED_MOTION_FADE_DURATION,
               ease: "power2.out",
-              onComplete: () => gsap.set(split.lines, { yPercent: 100 }),
+              onComplete: () => {
+                if (split) gsap.set(split.lines, { yPercent: 100 });
+              },
             });
-          } else {
+          } else if (split) {
             gsap.to(split.lines, {
               yPercent: 100,
               duration: 0.28,
@@ -388,11 +402,16 @@ export function ZoomSliderComp({
               ease: "power2.in",
               onComplete: () => gsap.set(textElement, { autoAlpha: 0 }),
             });
+          } else {
+            gsap.set(textElement, { autoAlpha: 0 });
           }
         } else {
-          gsap.killTweensOf([textElement, split.lines]);
+          gsap.killTweensOf(textElement);
           gsap.set(textElement, { autoAlpha: 0 });
-          gsap.set(split.lines, { yPercent: 100 });
+          if (split) {
+            gsap.killTweensOf(split.lines);
+            gsap.set(split.lines, { yPercent: 100 });
+          }
         }
 
         if (!imageElement || !scaleOnHover) return;
@@ -410,12 +429,12 @@ export function ZoomSliderComp({
       cleanups.push(() => {
         imageWrap.removeEventListener("mouseenter", onEnter);
         imageWrap.removeEventListener("mouseleave", onLeave);
-        split.revert();
+        split?.revert();
       });
     });
 
     return () => cleanups.forEach((cleanup) => cleanup());
-  }, [images, reduceMotion, scaleOnHover, textOnHover]);
+  }, [images, mounted, reduceMotion, scaleOnHover, textOnHover]);
 
   const activeItem = images[activeIndex];
   const slideAnnouncement = images.length
@@ -454,8 +473,9 @@ export function ZoomSliderComp({
 
   return (
     <div
+      ref={sliderRef}
       className="relative w-full overflow-hidden bg-[#FFBA43] rounded-[60px]"
-      style={{ height: "100svh", touchAction: "none" }}
+      style={{ height: "110vh", touchAction: "none" }}
       suppressHydrationWarning
     >
       {heading}
@@ -465,7 +485,7 @@ export function ZoomSliderComp({
             {slideAnnouncement}
           </div>
 
-          <div ref={stripRef} className="absolute inset-0">
+          <div ref={stripRef} className="absolute inset-0 h-full">
             {images.map((item, index) => (
               <div
                 key={index}
@@ -524,7 +544,7 @@ export function ZoomSliderComp({
                     src={item.src}
                     alt={item.title}
                     draggable={false}
-                    className="pointer-events-none absolute inset-0 select-none object-cover opacity-0 w-full h-full"
+                    className="pointer-events-none absolute inset-0 select-none object-cover w-full h-full"
                     style={{
                       transform: "none",
                       objectPosition: "center bottom",

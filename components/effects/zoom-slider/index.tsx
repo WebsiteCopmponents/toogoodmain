@@ -1,7 +1,7 @@
 // Built using Hyperiux Vault: https://vault.hyperiux.com
 
 // Built using Hyperiux Vault: https://vault.hyperiux.com
-
+//Filev :- components/effects/zoom-slider/index.tsx
 import { ZoomSliderComp, type ZoomSliderItem } from "./ZoomSliderComp";
 
 const ZoomSlider = ({

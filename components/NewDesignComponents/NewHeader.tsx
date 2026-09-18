@@ -162,10 +162,10 @@ export default function NewHeader() {
         <div className="new-site-header-left">
           <a href="/" aria-label="TooGood.agency" className="new-site-logo">
             <Image
-              src="/toogood-logo.png"
+              src="/logo 150  50.png"
               alt="TooGood.agency"
-              width={463}
-              height={144}
+              width={150}
+              height={50}
               priority
             />
           </a>

@@ -6,12 +6,16 @@ import { useSiteModal } from "@/components/ContactModal";
 import { Check, X, Headphones, ShieldCheck } from "lucide-react";
 import ArrowFillButton from "@/components/NewDesignComponents/ArrowFillButton";
 
+type BillingCycle = "one-time" | "ongoing";
+
 const pricingPlans = [
   {
     id: "online",
     title: "Site",
-    description: "A conversion-focused website with design, build, and SEO basics.",
-    price: "49",
+    description:
+      "A conversion-focused website with design, build, and SEO basics.",
+    oneTime: { amount: "500", custom: false },
+    ongoing: { amount: "500", custom: false },
     features: [
       { text: "Web design and development", included: true },
       { text: "UI/UX for the main journeys", included: true },
@@ -24,8 +28,10 @@ const pricingPlans = [
   {
     id: "community",
     title: "Product",
-    description: "The site plus a web app or dashboard that matches how you work.",
-    price: "99",
+    description:
+      "The site plus a web app or dashboard that matches how you work.",
+    oneTime: { amount: "1,000", custom: false },
+    ongoing: { amount: "1,000", custom: false },
     features: [
       { text: "Everything in Site", included: true },
       { text: "Custom web application", included: true },
@@ -39,7 +45,8 @@ const pricingPlans = [
     id: "personal",
     title: "Studio",
     description: "Web, mobile, and the connected work — ads, SEO, and social.",
-    price: "249",
+    oneTime: { amount: "Custom", custom: true },
+    ongoing: { amount: "Custom", custom: true },
     features: [
       { text: "Web and mobile applications", included: true },
       { text: "UI/UX across every surface", included: true },
@@ -53,6 +60,7 @@ const pricingPlans = [
 
 export default function Pricing({ className }: { className?: string }) {
   const [activeId, setActiveId] = useState("community");
+  const [billing, setBilling] = useState<BillingCycle>("one-time");
   const { open } = useSiteModal();
 
   return (
@@ -62,18 +70,50 @@ export default function Pricing({ className }: { className?: string }) {
         (className || "")
       }
     >
-      <div className="flex flex-col items-center gap-4 text-center max-w-[1170px] mx-auto mb-[80px]">
+      <div className="flex flex-col items-center gap-4 text-center max-w-[1170px] mx-auto mb-10 md:mb-14">
         <h2 className="font-heading text-[32px] md:text-[52px] font-medium leading-[1.1] md:leading-[56px] tracking-[-0.8px] text-black">
           Simple studio <br className="hidden md:block" /> packages
         </h2>
         <p className="max-w-[600px] font-sans text-[16px] leading-[26px] font-normal tracking-[-0.18px] text-black/70 md:text-[18px]">
           Pick the shape of the work — site, product, or the full studio.
         </p>
+        <div
+          role="radiogroup"
+          aria-label="Billing type"
+          className="mt-4 inline-flex w-full max-w-[420px] rounded-full bg-[#e4ddd1] p-1.5 md:max-w-[480px]"
+        >
+          {(
+            [
+              { id: "one-time", label: "One-time project" },
+              { id: "ongoing", label: "Ongoing project" },
+            ] as const
+          ).map((option) => {
+            const isOn = billing === option.id;
+            return (
+              <button
+                key={option.id}
+                type="button"
+                role="radio"
+                aria-checked={isOn}
+                onClick={() => setBilling(option.id)}
+                className={
+                  "flex-1 rounded-full px-4 py-4 font-sans text-[14px] font-medium leading-none tracking-[-0.2px] transition-all duration-300 md:px-6 md:text-[15px] " +
+                  (isOn
+                    ? "bg-white text-black shadow-[0_1px_8px_rgba(0,0,0,0.08)]"
+                    : "bg-transparent text-black/45 hover:text-black/70")
+                }
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-[1170px] mx-auto mb-12">
         {pricingPlans.map((plan) => {
           const isActive = activeId === plan.id;
+          const quote = billing === "ongoing" ? plan.ongoing : plan.oneTime;
           return (
             <div
               key={plan.id}
@@ -105,32 +145,45 @@ export default function Pricing({ className }: { className?: string }) {
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 mb-8 w-full">
-                <span
-                  className={
-                    "font-sans text-[16px] leading-[24px] tracking-[-0.4px] transition-colors duration-500 " +
-                    (isActive ? "text-white/70" : "text-black/70")
-                  }
-                >
-                  Start from
-                </span>
-                <div className="flex items-baseline gap-1">
+              <div className="mb-8 flex min-h-[56px] w-full items-end gap-2">
+                {!quote.custom && (
                   <span
                     className={
-                      "font-heading text-[52px] font-medium leading-[56px] tracking-[-0.8px] transition-colors duration-500 " +
-                      (isActive ? "text-white" : "text-black")
-                    }
-                  >
-                    {"$" + plan.price}
-                  </span>
-                  <span
-                    className={
-                      "font-sans text-[16px] leading-[24px] tracking-[-0.4px] transition-colors duration-500 " +
+                      "pb-2 font-sans text-[16px] leading-[24px] tracking-[-0.4px] transition-colors duration-500 " +
                       (isActive ? "text-white/70" : "text-black/70")
                     }
                   >
-                    /month
+                    Start from
                   </span>
+                )}
+                <div className="flex items-baseline gap-1">
+                  <span
+                    className={
+                      "font-heading font-medium tracking-[-0.8px] transition-colors duration-500 " +
+                      (quote.custom
+                        ? "text-[36px] leading-[44px] md:text-[40px] md:leading-[48px] "
+                        : "text-[52px] leading-[56px] ") +
+                      (isActive
+                        ? quote.custom
+                          ? "text-white/80"
+                          : "text-white"
+                        : quote.custom
+                          ? "text-black/55"
+                          : "text-black")
+                    }
+                  >
+                    {quote.custom ? quote.amount : "£" + quote.amount}
+                  </span>
+                  {!quote.custom && billing === "ongoing" && (
+                    <span
+                      className={
+                        "font-sans text-[16px] leading-[24px] tracking-[-0.4px] transition-colors duration-500 " +
+                        (isActive ? "text-white/70" : "text-black/70")
+                      }
+                    >
+                      /month
+                    </span>
+                  )}
                 </div>
               </div>
 
