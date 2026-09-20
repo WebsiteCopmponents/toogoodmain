@@ -81,7 +81,7 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => open("privacy")}
-            className="font-medium text-[#4B69F0] underline underline-offset-2"
+            className="font-medium text-black underline underline-offset-2"
           >
             Privacy Policy
           </button>{" "}
@@ -124,7 +124,7 @@ export default function CookieConsent() {
                 })
               }
               className={
-                pill + " bg-black text-white hover:bg-[#ffaee7] hover:text-black"
+                pill + " bg-black text-white hover:bg-[#00BF63] hover:text-white"
               }
             >
               Save preferences
@@ -145,7 +145,7 @@ export default function CookieConsent() {
             onClick={() =>
               save({ necessary: true, analytics: false, marketing: false })
             }
-            className={pill + " bg-[#ffaee7] text-black hover:bg-black hover:text-white"}
+            className={pill + " bg-[#00BF63] text-white hover:bg-black hover:text-white"}
           >
             Reject
           </button>
@@ -154,7 +154,7 @@ export default function CookieConsent() {
             onClick={() =>
               save({ necessary: true, analytics: true, marketing: true })
             }
-            className={pill + " bg-[#ffaee7] text-black hover:bg-black hover:text-white"}
+            className={pill + " bg-[#00BF63] text-white hover:bg-black hover:text-white"}
           >
             Accept
           </button>

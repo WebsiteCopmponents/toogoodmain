@@ -91,11 +91,11 @@ const renderStickyContent = (item: StickyContentItem) => {
             href={link.href}
             btnText={link.text || link.label || "Learn more"}
             className={`new-site-header-fill-btn px-6 py-5 ${link.className || ""}`}
-            bgColor="var(--new-site-button-secondary-bg-color)"
-            textColor="#000000"
-            fillBgColor="black"
+            bgColor="black"
+            textColor="white"
+            fillBgColor="var(--new-site-accent-primary)"
             fillTextColor="white"
-            hoverFillBgColor="black"
+            hoverFillBgColor="var(--new-site-accent-primary)"
             hoverFillTextColor="white"
             arrowColor="white"
             hoverArrowColor="white"

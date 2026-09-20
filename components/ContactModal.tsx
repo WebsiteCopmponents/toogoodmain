@@ -131,7 +131,7 @@ function ContactCtas({ surface }: { surface: "panel" | "form" }) {
         href={WHATSAPP_HREF}
         target="_blank"
         rel="noreferrer"
-        className="flex items-center justify-center gap-2 rounded-full bg-[#ffaee7] px-4 py-3.5 text-[14px] font-medium text-black transition-colors hover:bg-black hover:text-white"
+        className="flex items-center justify-center gap-2 rounded-full bg-[#00BF63] px-4 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-black hover:text-white"
       >
         <WhatsAppGlyph className="size-4" />
         WhatsApp
@@ -195,7 +195,7 @@ function SiteModal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 z-20 flex size-9 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-[#ffaee7] sm:top-5 sm:right-5"
+          className="absolute top-4 right-4 z-20 flex size-9 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-[#00BF63] hover:text-white sm:top-5 sm:right-5"
         >
           <X size={18} />
         </button>
@@ -527,7 +527,7 @@ function TimePickerField({
                   className={
                     "rounded-xl px-2 py-2.5 text-[13px] font-medium transition-colors " +
                     (selected
-                      ? "bg-[#ffaee7] text-black"
+                      ? "bg-[#00BF63] text-white"
                       : "bg-[#e4ddd1] text-black hover:bg-black hover:text-white")
                   }
                 >
@@ -570,13 +570,25 @@ function ChoiceCard({
       className={
         "rounded-2xl border px-4 py-3.5 text-left transition-colors " +
         (selected
-          ? "border-black bg-[#ffaee7]"
+          ? "border-black bg-[#00BF63] text-white"
           : "border-[#d4cdc0] bg-[#e4ddd1] hover:border-black/40")
       }
     >
-      <span className="block text-sm font-medium text-black">{title}</span>
+      <span
+        className={
+          "block text-sm font-medium " +
+          (selected ? "text-white" : "text-black")
+        }
+      >
+        {title}
+      </span>
       {description ? (
-        <span className="mt-1 block text-[12px] leading-snug text-[#666]">
+        <span
+          className={
+            "mt-1 block text-[12px] leading-snug " +
+            (selected ? "text-white/80" : "text-[#666]")
+          }
+        >
           {description}
         </span>
       ) : null}
@@ -954,7 +966,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex w-full items-center justify-center rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#ffaee7] hover:text-black"
+                className="flex w-full items-center justify-center rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#00BF63] hover:text-white"
               >
                 Close
               </button>
@@ -968,7 +980,7 @@ function ProjectForm({ onClose }: { onClose: () => void }) {
               <button
                 type="submit"
                 disabled={submitState === "sending"}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#ffaee7] hover:text-black disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-black py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#00BF63] hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {submitState === "sending" ? "Sending…" : "Book appointment"}
                 <Send size={16} />

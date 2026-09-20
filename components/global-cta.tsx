@@ -90,7 +90,7 @@ export default function GlobalCta({ className }: { className?: string }) {
               type="button"
               aria-label="Start a project"
               onClick={() => open("project")}
-              className="w-[28px] sm:w-[32px] h-[28px] sm:h-[32px] bg-[#FFAEE7] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-colors cursor-pointer ml-1 sm:ml-2"
+              className="w-[28px] sm:w-[32px] h-[28px] sm:h-[32px] bg-[#FF7043] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-colors cursor-pointer ml-1 sm:ml-2"
             >
               <Phone size={12} className="fill-current" />
             </button>

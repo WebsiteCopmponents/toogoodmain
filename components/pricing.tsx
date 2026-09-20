@@ -206,7 +206,7 @@ export default function Pricing({ className }: { className?: string }) {
                           "flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-500 " +
                           (feature.included
                             ? isActive
-                              ? "bg-[#FFAEE7] text-black"
+                              ? "bg-[#FF7043] text-black"
                               : "bg-black/10 text-black"
                             : isActive
                               ? "bg-white/20 text-white/60"
@@ -242,15 +242,11 @@ export default function Pricing({ className }: { className?: string }) {
                 href="#contact"
                 btnText={plan.buttonText}
                 className="new-site-header-fill-btn mt-auto w-full justify-center px-6 py-5"
-                bgColor={
-                  isActive
-                    ? "var(--new-site-button-secondary-bg-color)"
-                    : "#ffffff"
-                }
-                textColor="#000000"
-                fillBgColor="black"
+                bgColor={isActive ? "#ffffff" : "black"}
+                textColor={isActive ? "#000000" : "#ffffff"}
+                fillBgColor="var(--new-site-accent-primary)"
                 fillTextColor="white"
-                hoverFillBgColor="black"
+                hoverFillBgColor="var(--new-site-accent-primary)"
                 hoverFillTextColor="white"
                 arrowColor="white"
                 hoverArrowColor="white"

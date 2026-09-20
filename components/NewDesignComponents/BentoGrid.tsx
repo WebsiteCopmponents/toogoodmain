@@ -124,7 +124,7 @@ function ConfirmVisual() {
         <p className="text-[15px] font-semibold tracking-tight text-black">
           You&apos;ve shipped a site worth keeping
         </p>
-        <div className="mt-4 h-9 rounded-full bg-[#22c55e]" />
+        <div className="mt-4 h-9 rounded-full bg-[#00BF63]" />
       </div>
     </div>
   );
@@ -139,7 +139,7 @@ function PhotoVisual() {
         alt=""
         className="absolute inset-0 size-full object-cover"
       />
-      <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-[#ffaee7] text-xl">
+      <div className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-[#FF7043] text-xl text-black">
         ✦
       </div>
       <div className="absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-full bg-[#ffba43] text-xl">
@@ -162,15 +162,15 @@ function ServiceCard({
 }) {
   const isPink = visualSlot % 4 === 0;
   const visual = visualSlot % 4;
-  const textClass = isPink ? "text-white" : "text-black";
-  const mutedClass = isPink ? "text-white/80" : "text-black/70";
+  const textClass = "text-black";
+  const mutedClass = "text-black/70";
 
   return (
     <article
       data-service-slide={isSlide ? "" : undefined}
       className={
         "flex h-[42rem] flex-col rounded-[60px] p-8 md:p-10 " +
-        (isPink ? "bg-[#ffaee7] text-white" : "bg-[#ece7dc]") +
+        (isPink ? "bg-[#FF7043] text-black" : "bg-[#ece7dc]") +
         (className ? ` ${className}` : "")
       }
     >

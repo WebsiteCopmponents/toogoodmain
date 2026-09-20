@@ -36,7 +36,7 @@ export default function MobileBottomNav() {
           href={WHATSAPP_HREF}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center justify-center gap-2 rounded-full bg-[#ffaee7] px-4 py-3.5 text-[14px] font-medium text-black shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-colors hover:bg-black hover:text-white"
+          className="flex items-center justify-center gap-2 rounded-full bg-[#00BF63] px-4 py-3.5 text-[14px] font-medium text-white shadow-[0_12px_32px_rgba(0,0,0,0.12)] transition-colors hover:bg-black hover:text-white"
         >
           <WhatsAppGlyph className="size-4" />
           WhatsApp

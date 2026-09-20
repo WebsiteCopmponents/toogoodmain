@@ -24,7 +24,7 @@ function FAQItem({ question, answer, isOpen, onClick, isLast }: FAQItemProps) {
         className={
           "transition-all duration-700 " +
           (isOpen
-            ? "bg-[#FFAEE7] rounded-[16px] p-6 my-4"
+            ? "bg-[#00BF63] rounded-[16px] p-6 my-4"
             : "py-[22px] bg-transparent")
         }
       >
@@ -36,7 +36,7 @@ function FAQItem({ question, answer, isOpen, onClick, isLast }: FAQItemProps) {
             className={
               "font-sans text-[15px] md:text-[16px] transition-all duration-500 " +
               (isOpen
-                ? "font-bold text-[#111] translate-x-1"
+                ? "font-bold text-white translate-x-1"
                 : "font-medium text-[#999]")
             }
           >
@@ -45,7 +45,7 @@ function FAQItem({ question, answer, isOpen, onClick, isLast }: FAQItemProps) {
           <div
             className={
               "flex-shrink-0 transition-all duration-500 " +
-              (isOpen ? "text-black" : "text-[#555]")
+              (isOpen ? "text-white" : "text-[#555]")
             }
           >
             {isOpen ? <X size={18} /> : <Plus size={18} />}
@@ -66,7 +66,7 @@ function FAQItem({ question, answer, isOpen, onClick, isLast }: FAQItemProps) {
               }}
               className="overflow-hidden"
             >
-              <p className="font-sans text-[14px] text-[#444] leading-[1.8] mt-[14px] pr-4">
+              <p className="font-sans text-[14px] text-white/85 leading-[1.8] mt-[14px] pr-4">
                 {answer}
               </p>
             </motion.div>
@@ -180,11 +180,11 @@ export default function FAQ({ className }: { className?: string }) {
               bgColor="var(--new-site-button-primary-bg-color)"
               textColor="var(--new-site-button-primary-text-color)"
               fillBgColor="var(--new-site-button-secondary-bg-color)"
-              fillTextColor="#000000"
+              fillTextColor="#ffffff"
               hoverFillBgColor="var(--new-site-button-secondary-bg-color)"
-              hoverFillTextColor="#000000"
-              arrowColor="#000000"
-              hoverArrowColor="#000000"
+              hoverFillTextColor="#ffffff"
+              arrowColor="#ffffff"
+              hoverArrowColor="#ffffff"
             />
             </motion.div>
           </div>

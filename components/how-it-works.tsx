@@ -11,8 +11,8 @@ const cardHoverVariants: Variants = {
 };
 
 const stepBadgeVariants: Variants = {
-  rest: { backgroundColor: "#FFAEE7", color: "#000000" },
-  hover: { backgroundColor: "#FFAEE7", color: "#000000" },
+  rest: { backgroundColor: "#FF7043", color: "#000000" },
+  hover: { backgroundColor: "#FF7043", color: "#000000" },
 };
 
 const borderVariants: Variants = {
@@ -170,7 +170,7 @@ export default function HowItWorks04Kelo({
                   height="100%"
                   rx="32"
                   fill="none"
-                  stroke="#FFAEE7"
+                  stroke="#FF7043"
                   strokeWidth="2"
                   initial={{ pathLength: 0, opacity: 0 }}
                   variants={borderVariants}
@@ -186,7 +186,7 @@ export default function HowItWorks04Kelo({
                   variants={stepBadgeVariants}
                   initial="rest"
                   animate="rest"
-                  className="mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-[#FFAEE7] text-[13px] font-semibold text-[#000]"
+                  className="mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-[#FF7043] text-[13px] font-semibold text-[#000]"
                 >
                   {item.step}
                 </motion.div>

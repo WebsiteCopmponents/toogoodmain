@@ -42,7 +42,7 @@ export default function NormalFooter({ className }: { className?: string }) {
             <button
               type="button"
               onClick={() => setEmail("")}
-              className="w-full min-w-[140px] rounded-full bg-[#FFAEE7] px-8 py-4 font-sans text-[15px] font-bold text-black transition-colors hover:bg-white sm:w-auto"
+              className="w-full min-w-[140px] rounded-full bg-[#00BF63] px-8 py-4 font-sans text-[15px] font-bold text-white transition-colors hover:bg-white hover:text-black sm:w-auto"
             >
               Subscribe
             </button>

@@ -93,11 +93,11 @@ function ArrowFillButton({
   bgColor = "#000000",
   textColor = "#ffffff",
 
-  fillBgColor = "#ffaee7",
-  fillTextColor = "#000000",
+  fillBgColor = "#00BF63",
+  fillTextColor = "#ffffff",
 
-  hoverFillBgColor = "#ffaee7",
-  hoverFillTextColor = "#000000",
+  hoverFillBgColor = "#00BF63",
+  hoverFillTextColor = "#ffffff",
 
   arrowColor,
   hoverArrowColor,

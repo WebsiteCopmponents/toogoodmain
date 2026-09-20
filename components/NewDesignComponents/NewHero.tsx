@@ -85,7 +85,7 @@ export default function NewHero() {
             btnText="Book a demo"
             className="new-site-header-fill-btn px-6 py-5"
             bgColor="var(--new-site-button-secondary-bg-color)"
-            textColor="#000000"
+            textColor="#ffffff"
             fillBgColor="black"
             fillTextColor="white"
             hoverFillBgColor="black"

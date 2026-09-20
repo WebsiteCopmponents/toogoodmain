@@ -41,11 +41,11 @@ function HeaderCtas({ onNavigate }: { onNavigate?: () => void }) {
         bgColor="var(--new-site-button-primary-bg-color)"
         textColor="var(--new-site-button-primary-text-color)"
         fillBgColor="var(--new-site-button-secondary-bg-color)"
-        fillTextColor="#000000"
+        fillTextColor="#ffffff"
         hoverFillBgColor="var(--new-site-button-secondary-bg-color)"
-        hoverFillTextColor="#000000"
-        arrowColor="#000000"
-        hoverArrowColor="#000000"
+        hoverFillTextColor="#ffffff"
+        arrowColor="#ffffff"
+        hoverArrowColor="#ffffff"
         onClick={(event) => {
           event.preventDefault();
           onNavigate?.();
