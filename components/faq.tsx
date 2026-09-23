@@ -128,10 +128,10 @@ export default function FAQ({ className }: { className?: string }) {
           className="w-full lg:w-[40%] flex-shrink-0"
         >
           <img
-            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop"
+            src="/Faq.png"
             alt="TooGood studio"
             referrerPolicy="no-referrer"
-            className="w-full max-w-[380px] h-[560px] object-cover object-center rounded-[20px] mx-auto lg:mx-0"
+            className="w-full max-w-[400px] h-[520px] object-cover object-center rounded-[20px] mx-auto lg:mx-0"
           />
         </motion.div>
 
@@ -160,8 +160,8 @@ export default function FAQ({ className }: { className?: string }) {
               }}
               className="font-sans text-[#666] text-[14px] leading-[1.6] max-w-[500px] mb-6"
             >
-              Straight answers about the studio, how we work online from the
-              UK, and what we will and will not take on.
+              Straight answers about the studio, how we work online from the UK,
+              and what we will and will not take on.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -174,27 +174,24 @@ export default function FAQ({ className }: { className?: string }) {
               }}
             >
               <ArrowFillButton
-              href="#contact"
-              btnText="Start a project"
-              className="new-site-header-fill-btn px-6 py-5"
-              bgColor="var(--new-site-button-primary-bg-color)"
-              textColor="var(--new-site-button-primary-text-color)"
-              fillBgColor="var(--new-site-button-secondary-bg-color)"
-              fillTextColor="#ffffff"
-              hoverFillBgColor="var(--new-site-button-secondary-bg-color)"
-              hoverFillTextColor="#ffffff"
-              arrowColor="#ffffff"
-              hoverArrowColor="#ffffff"
-            />
+                href="#contact"
+                btnText="Start a project"
+                className="new-site-header-fill-btn px-6 py-5"
+                bgColor="var(--new-site-button-primary-bg-color)"
+                textColor="var(--new-site-button-primary-text-color)"
+                fillBgColor="var(--new-site-button-secondary-bg-color)"
+                fillTextColor="#ffffff"
+                hoverFillBgColor="var(--new-site-button-secondary-bg-color)"
+                hoverFillTextColor="#ffffff"
+                arrowColor="#ffffff"
+                hoverArrowColor="#ffffff"
+              />
             </motion.div>
           </div>
 
           <div className="mt-10 space-y-0">
             {faqData.map(
-              (
-                item: { question: string; answer: string },
-                index: number,
-              ) => (
+              (item: { question: string; answer: string }, index: number) => (
                 <FAQItem
                   key={index}
                   question={item.question}

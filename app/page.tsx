@@ -110,7 +110,7 @@ export default function Home() {
       <section
         id="testimonials"
         aria-label="Client stories"
-        className="bg-[#00BF63] text-white rounded-[60px] p-10 my-10"
+        className="bg-[#00BF63] text-white rounded-[60px] md:px-10 px-0 py-10 my-10"
       >
         <h2 className="mb-4 text-center text-6xl font-bold capitalize max-md:mb-6 max-md:text-4xl">
           Client stories
